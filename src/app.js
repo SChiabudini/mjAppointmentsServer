@@ -1,9 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
-const path = require('path');
-const routes = require('./routes/index.js');
-const { uploadsDir } = require('../pathConfig.js');
+const router = require('./routes/index.js');
 
 require('./db.js');
 
@@ -23,10 +21,6 @@ server.use((req, res, next) => {
     next();
   });
 
-server.use('/', routes);
-
-// Configuración para servir archivos estáticos desde la carpeta 'uploads'
-server.use('/uploads', express.static(uploadsDir));
-
+server.use('/', router);
 
 module.exports = server;
