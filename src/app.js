@@ -1,7 +1,9 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
-const router = require('./routes/index.js');
+
+const routes = require('./routes/index.js');
+
 
 require('./db.js');
 
@@ -21,6 +23,6 @@ server.use((req, res, next) => {
     next();
   });
 
-server.use('/', router);
+server.use('/', routes);
 
 module.exports = server;
