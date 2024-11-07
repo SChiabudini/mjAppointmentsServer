@@ -2,7 +2,7 @@ require('../../db.js');
 const PersonClient = require('../../collections/PersonClient.js');
 
 const getPersonClientsCtrl = async () => {
-    const personClients = await PersonClient.find();
+    const personClients = await PersonClient.find().populate('vehicles');
 
     return personClients;
 };
