@@ -2,9 +2,7 @@ const { Router } = require('express');
 
 const router = Router();
 
-// Ruta de prueba
-router.get('/', (req, res) => {
-    res.json({ message: '¡Todo funcionando!' });
-});
+router.use('/', (req, res) => {res.send('Server Indira Gold OK')});
+
 
 module.exports = router;
