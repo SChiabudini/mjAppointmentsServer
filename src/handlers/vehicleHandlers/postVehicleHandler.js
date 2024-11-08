@@ -1,5 +1,5 @@
 const postVehicleCtrl = require('../../controllers/vehicleCtrls/postVehicleCtrl.js');
-//const getVehiclesByLicensePlate = require('../../controllers/vehicleCtrls/getVehiclesByLicensePlate.js');
+const getVehiclesByLicensePlateCtrl = require('../../controllers/vehicleCtrls/getVehiclesByLicensePlateCtrl.js');
 
 const postVehicleHandler = async (req, res) => {
 
@@ -15,10 +15,10 @@ const postVehicleHandler = async (req, res) => {
             return res.status(400).send({ error: 'Incorrect DataType - licensePlate' });
         }
 
-        //const existingVehicle = await getVehiclesByLicensePlate(licensePlate);
-        //if (existingVehicle[0]?.licensePlate === licensePlate) {
-        //    return res.status(400).send({ error: 'Vehicle with this License Plate already exists' });
-        //}
+        const existingVehicle = await getVehiclesByLicensePlateCtrl(licensePlate);
+        if (existingVehicle[0]?.licensePlate === licensePlate) {
+            return res.status(400).send({ error: 'Vehicle with this License Plate already exists' });
+        }
 
         if(typeof brand !== 'string'){
             return res.status(400).send({ error: 'Incorrect DataType - brand' });
