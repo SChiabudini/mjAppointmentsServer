@@ -3,7 +3,7 @@ const getPersonClientsByDni = require('../../controllers/personClientCtrls/getPe
 
 const postPersonClientHandler = async (req, res) => {
 
-    const { dni, name, email, phones, cuilCuit } = req.body;
+    const { dni, name, email, phones, cuilCuit, vehicles } = req.body;
 
     try {
         
@@ -36,7 +36,11 @@ const postPersonClientHandler = async (req, res) => {
             return res.status(400).send({ error: 'Incorrect DataType - cuilCuit' });
         }
 
-        const newPersonClient = await postPersonClientCtrl(dni, name, email, phones, cuilCuit);
+        if (vehicles && !Array.isArray(vehicles)) {
+            return res.status(400).send({ error: 'Incorrect DataType - vehicles' });
+        }
+
+        const newPersonClient = await postPersonClientCtrl(dni, name, email, phones, cuilCuit, vehicles);
         res.status(200).send(newPersonClient);
 
     } catch (error) {
