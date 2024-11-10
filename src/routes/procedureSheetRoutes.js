@@ -1,7 +1,9 @@
 const procedureSheetRouter = require('express').Router();
-const { getProcedureSheetsHandler, postProcedureSheetHandler } = require('../handlers/procedureSheetHandlers/indexHandlers.js');
+const { getProcedureSheetsHandler, getActiveProcedureSheetsHandler, postProcedureSheetHandler } = require('../handlers/procedureSheetHandlers/indexHandlers.js');
 
-procedureSheetRouter.get('/', getProcedureSheetsHandler);
+
+procedureSheetRouter.get('/all', getProcedureSheetsHandler);
+procedureSheetRouter.get('/', getActiveProcedureSheetsHandler);
 procedureSheetRouter.post('/', postProcedureSheetHandler);
 
 module.exports = procedureSheetRouter;

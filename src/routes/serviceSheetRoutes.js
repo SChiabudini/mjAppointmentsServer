@@ -1,7 +1,8 @@
 const serviceSheetRouter = require('express').Router();
-const { getServiceSheetsHandler, postServiceSheetHandler } = require('../handlers/serviceSheetHandlers/indexHandlers.js');
+const { getServiceSheetsHandler, getActiveServiceSheetsHandler, postServiceSheetHandler } = require('../handlers/serviceSheetHandlers/indexHandlers.js');
 
-serviceSheetRouter.get('/', getServiceSheetsHandler);
+serviceSheetRouter.get('/all', getServiceSheetsHandler);
+serviceSheetRouter.get('/', getActiveServiceSheetsHandler);
 serviceSheetRouter.post('/', postServiceSheetHandler);
 
 module.exports = serviceSheetRouter;
