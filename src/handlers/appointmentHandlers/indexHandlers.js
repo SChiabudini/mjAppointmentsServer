@@ -1,7 +1,7 @@
-//const getAppointmentHandler = require('./getAppointmentHandler.js');
+const getAppointmentsHandler = require('./getAppointmentsHandler.js');
 const postAppointmentHandler = require('./postAppointmentHandler.js');
 
 module.exports = {
-    //getCompanyClientsHandler,
+    getAppointmentsHandler,
     postAppointmentHandler
 }
