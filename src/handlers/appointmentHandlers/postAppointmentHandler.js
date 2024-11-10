@@ -10,12 +10,14 @@ const postAppointmentHandler = async (req, res) => {
             return res.status(400).send({ error: 'Missing data' });
         }
 
-        if(typeof date !== 'string'){
-            return res.status(400).send({ error: 'Incorrect DataType - date' });
+        const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+        if(typeof date !== 'string' || !dateRegex.test(date)) {
+            return res.status(400).send({ error: 'Incorrect format for date. Expected YYYY-MM-DD' });
         }
 
-        if(typeof time !== 'string'){
-            return res.status(400).send({ error: 'Incorrect DataType - time' });
+        const timeRegex = /^([01]\d|2[0-3]):([0-5]\d)$/;
+        if(typeof time !== 'string' || !timeRegex.test(time)) {
+            return res.status(400).send({ error: 'Incorrect format for time. Expected HH:MM' });
         }
 
         if(personClient && typeof personClient !== 'string'){
