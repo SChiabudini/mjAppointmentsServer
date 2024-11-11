@@ -7,7 +7,9 @@ const getActivePersonClientsByDniCtrl = async (dni) => {
 
   if (dni) {
     const activePersonClients = await PersonClient.find({ dni: regex, active: true })
-    .populate('vehicles');
+    .populate('vehicles')
+    .populate('serviceSheets')
+    .populate('procedureSheets');
 
     return activePersonClients;
   };
