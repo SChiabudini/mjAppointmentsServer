@@ -6,7 +6,11 @@ const getPersonClientsByDniCtrl = async (dni) => {
   const regex = new RegExp(`.*${dni}.*`, 'i');
 
   if (dni) {
-    const personClients = await PersonClient.find({ dni: regex }).populate('vehicles');;
+    const personClients = await PersonClient.find({ dni: regex })
+    .populate('vehicles')
+    .populate('serviceSheets')
+    .populate('procedureSheets');
+    
     return personClients;
   };
 };
