@@ -3,15 +3,19 @@ const Vehicle = require('../../collections/Vehicle.js');
 
 const getActiveVehiclesByClientCtrl = async (client) => {
 
-  const regex = new RegExp(`.*${client}.*`, 'i');
+  const normalizeString = (str) =>
+    str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const regex = new RegExp(normalizeString(client), 'i');
 
-  if (client) {
-    const activeVehicles = await Vehicle.find({ licensePlate: regex, active: true })
-    .populate('personClient')
-    .populate('companyClient');
+  const vehicles = await Vehicle.find({ active: true })
+    .populate('personClient', 'name')
+    .populate('companyClient', 'name');
 
-    return activeVehicles;
-  };
+  return vehicles.filter(
+    (vehicle) =>
+      (vehicle.personClient && regex.test(normalizeString(vehicle.personClient.name))) ||
+      (vehicle.companyClient && regex.test(normalizeString(vehicle.companyClient.name)))
+  );
 };
 
 module.exports = getActiveVehiclesByClientCtrl; 
