@@ -1,5 +1,5 @@
 const companyClientRouter = require('express').Router();
-const { getCompanyClientsHandler, getCompanyClientByIdHandler, getActiveCompanyClientsHandler, getCompanyClientsByCuitHandler, getActiveCompanyClientsByCuitHandler, getCompanyClientsByNameHandler, getActiveCompanyClientsByNameHandler, postCompanyClientHandler } = require('../handlers/companyClientHandlers/indexHandlers.js');
+const { getCompanyClientsHandler, getCompanyClientByIdHandler, getActiveCompanyClientsHandler, getCompanyClientsByCuitHandler, getActiveCompanyClientsByCuitHandler, getCompanyClientsByNameHandler, getActiveCompanyClientsByNameHandler, getCompanyClientsByVehicles, postCompanyClientHandler } = require('../handlers/companyClientHandlers/indexHandlers.js');
 
 companyClientRouter.get('/all', (req, res, next) => {
     const { cuit, name } = req.query;
@@ -30,6 +30,8 @@ companyClientRouter.get('/', (req, res, next) => {
 });
 
 companyClientRouter.get('/:id', getCompanyClientByIdHandler);
+
+companyClientRouter.get('/vehicles/:id', getCompanyClientsByVehicles);
 
 companyClientRouter.post('/', postCompanyClientHandler);
 
