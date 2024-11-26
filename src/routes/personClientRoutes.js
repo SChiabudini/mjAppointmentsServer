@@ -1,5 +1,5 @@
 const personClientRouter = require('express').Router();
-const { getPersonClientsHandler, getPersonClientByIdHandler, getActivePersonClientsHandler, getPersonClientsByDniHandler, getActivePersonClientsByDniHandler, getPersonClientsByNameHandler, getActivePersonClientsByNameHandler, postPersonClientHandler } = require('../handlers/personClientHandlers/indexHandlers.js');
+const { getPersonClientsHandler, getPersonClientByIdHandler, getActivePersonClientsHandler, getPersonClientsByDniHandler, getActivePersonClientsByDniHandler, getPersonClientsByNameHandler, getActivePersonClientsByNameHandler, getPersonClientByVehiclesHandler, postPersonClientHandler } = require('../handlers/personClientHandlers/indexHandlers.js');
 
 personClientRouter.get('/all', (req, res, next) => {
     const { dni, name } = req.query;
@@ -30,6 +30,8 @@ personClientRouter.get('/', (req, res, next) => {
 });
 
 personClientRouter.get('/:id', getPersonClientByIdHandler);
+
+personClientRouter.get('/vehicles/:id', getPersonClientByVehiclesHandler);
 
 personClientRouter.post('/', postPersonClientHandler);
 

@@ -5,6 +5,7 @@ const getPersonClientsByDniHandler = require('./getPersonClientsByDniHandler.js'
 const getActivePersonClientsByDniHandler = require('./getActivePersonClientsByDniHandler.js');
 const getPersonClientsByNameHandler = require('./getPersonClientsByNameHandler.js');
 const getActivePersonClientsByNameHandler = require('./getActivePersonClientsByNameHandler.js');
+const getPersonClientByVehiclesHandler = require ('./getPersonClientByVehiclesHandler.js');
 const postPersonClientHandler = require('./postPersonClientHandler.js');
 
 module.exports = {
@@ -15,5 +16,6 @@ module.exports = {
     getActivePersonClientsByDniHandler,
     getPersonClientsByNameHandler,
     getActivePersonClientsByNameHandler,
+    getPersonClientByVehiclesHandler,
     postPersonClientHandler
 }
