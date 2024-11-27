@@ -2,16 +2,27 @@ const { Schema, model } = require('mongoose');
 
 const appointmentSchema = new Schema ({
 
-    date: {
-        type: String,
+    start: {  
+        type: Date,
         required: true,
-        message: 'Invalid Date'
+        message: 'Invalid Start Date and Time'
     },
-    time: {
-        type: String,
+    end: { 
+        type: Date,
         required: true,
-        message: 'Invalid Time'
+        message: 'Invalid End Date and Time'
     },
+
+    // date: {
+    //     type: String,
+    //     required: true,
+    //     message: 'Invalid Date'
+    // },
+    // time: {
+    //     type: String,
+    //     required: true,
+    //     message: 'Invalid Time'
+    // },
 
     personClient: {
         type: Schema.Types.ObjectId,
@@ -29,6 +40,16 @@ const appointmentSchema = new Schema ({
         type: Schema.Types.ObjectId,
         ref: 'Vehicle',
         required: true
+    },
+
+    mechanical: {
+        type: Boolean,
+        default: false
+    },
+
+    service: {
+        type: Boolean,
+        default: false
     },
 
     procedure: {

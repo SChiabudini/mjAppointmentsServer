@@ -1,13 +1,15 @@
 const Appointment = require('../../collections/Appointment.js');
 
-const postAppointmentCtrl = async ( date, time, personClient, companyClient, vehicle, procedure ) => {
+const postAppointmentCtrl = async ( start, end, personClient, companyClient, vehicle, mechanical, service, procedure ) => {
 
     const newAppointment = {
-        date,
-        time,
+        start,
+        end,
         personClient,
         companyClient,
         vehicle,
+        mechanical,
+        service,
         procedure
     };
 
