@@ -1,8 +1,8 @@
 const companyClientRouter = require('express').Router();
-const { getCompanyClientsHandler, getCompanyClientByIdHandler, getActiveCompanyClientsHandler, getCompanyClientsByCuitHandler, getActiveCompanyClientsByCuitHandler, getCompanyClientsByNameHandler, getActiveCompanyClientsByNameHandler, getCompanyClientsByVehiclesHandler, postCompanyClientHandler } = require('../handlers/companyClientHandlers/indexHandlers.js');
+const { getCompanyClientsHandler, getCompanyClientByIdHandler, getActiveCompanyClientsHandler, getCompanyClientsByCuitHandler, getActiveCompanyClientsByCuitHandler, getCompanyClientsByNameHandler, getActiveCompanyClientsByNameHandler, getActiveCompanyClientsByVehicleHandler, getCompanyClientsByVehicleHandler, postCompanyClientHandler } = require('../handlers/companyClientHandlers/indexHandlers.js');
 
 companyClientRouter.get('/all', (req, res, next) => {
-    const { cuit, name } = req.query;
+    const { cuit, name, vehicle } = req.query;
 
     if (cuit) {
         return getCompanyClientsByCuitHandler(req, res, next);
@@ -11,12 +11,16 @@ companyClientRouter.get('/all', (req, res, next) => {
     if (name) {
         return getCompanyClientsByNameHandler(req, res, next);
     };
+    
+    if (vehicle) {
+        return getCompanyClientsByVehicleHandler(req, res, next);
+    }
 
     return getCompanyClientsHandler(req, res, next);
 });
 
 companyClientRouter.get('/', (req, res, next) => {
-    const { cuit, name } = req.query;
+    const { cuit, name, vehicle } = req.query;
 
     if (cuit) {
         return getActiveCompanyClientsByCuitHandler(req, res, next);
@@ -26,12 +30,14 @@ companyClientRouter.get('/', (req, res, next) => {
         return getActiveCompanyClientsByNameHandler(req, res, next);
     };
 
+    if (vehicle) {
+        return getActiveCompanyClientsByVehicleHandler(req, res, next);
+    }
+
     return getActiveCompanyClientsHandler(req, res, next);
 });
 
 companyClientRouter.get('/:id', getCompanyClientByIdHandler);
-
-companyClientRouter.get('/vehicles/:id', getCompanyClientsByVehiclesHandler);
 
 companyClientRouter.post('/', postCompanyClientHandler);
 
