@@ -7,7 +7,7 @@ const getActiveVehiclesByClientHandler = async (req, res) => {
         const activeVehiclesByClient = await getActiveVehiclesByClientCtrl(client);
 
         if (!activeVehiclesByClient) {
-            return res.status(404).send(`No vehicle found with client: "${licensePlate}"`);
+            return res.status(404).send(`No vehicle found with client: "${client}"`);
         }
 
         res.status(200).send(activeVehiclesByClient);
