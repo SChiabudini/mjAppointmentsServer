@@ -3,45 +3,49 @@ const postAppointmentCtrl = require('../../controllers/appointmentCtrls/postAppo
 const postAppointmentHandler = async (req, res) => {
 
     const { start, end, personClient, companyClient, vehicle, mechanical, service, procedure } = req.body;
-
+    
     try {
         
         if(!start || !end || !vehicle || !procedure) {
             return res.status(400).send({ error: 'Missing data' });
-        }
+        };
 
-        // const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-        // if(typeof date !== 'string' || !dateRegex.test(date)) {
-        //     return res.status(400).send({ error: 'Incorrect format for date. Expected YYYY-MM-DD' });
-        // }
+        if (!start || !end || isNaN(Date.parse(start)) || isNaN(Date.parse(end))) {
+            return res.status(400).send({ error: 'Invalid or missing start/end date' });
+        };
 
-        // const timeRegex = /^([01]\d|2[0-3]):([0-5]\d)$/;
-        // if(typeof time !== 'string' || !timeRegex.test(time)) {
-        //     return res.status(400).send({ error: 'Incorrect format for time. Expected HH:MM' });
-        // }
+        if (!personClient && !companyClient) {
+            return res.status(400).send({ error: 'Either personClient or companyClient must be provided' });
+        };
+        if (personClient && companyClient) {
+            return res.status(400).send({ error: 'Cannot have both personClient and companyClient' });
+        };
 
-        if(personClient && typeof personClient !== 'string'){
-            return res.status(400).send({ error: 'Incorrect DataType - personClient' });
-        }
+        if (personClient) {
+            if (!personClient._id) {
+                return res.status(400).send({ error: 'Invalid personClient data' });
+            };
+        };
+        if (companyClient) {
+            if (!companyClient._id) {
+                return res.status(400).send({ error: 'Invalid companyClient data' });
+            };
+        };
 
-        if(companyClient && typeof companyClient !== 'string'){
-            return res.status(400).send({ error: 'Incorrect DataType - companyClient' });
-        }
+        if (!vehicle || !vehicle._id) {
+            return res.status(400).send({ error: 'Invalid vehicle data' });
+        };
 
-        if(typeof vehicle !== 'string'){
-            return res.status(400).send({ error: 'Incorrect DataType - vehicle' });
-        }
-
-        if(typeof procedure !== 'string'){
-            return res.status(400).send({ error: 'Incorrect DataType - procedure' });
-        }
+        if (!procedure || typeof procedure !== 'string' || procedure.trim() === '') {
+            return res.status(400).send({ error: 'Invalid procedure data' });
+        };
 
         const newAppointment = await postAppointmentCtrl(start, end, personClient, companyClient, vehicle, mechanical, service, procedure);
         res.status(200).send(newAppointment);
 
     } catch (error) {
         return res.status(500).send(error.message);
-    }
+    };
 };
 
 module.exports = postAppointmentHandler;
