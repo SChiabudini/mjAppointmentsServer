@@ -1,14 +1,14 @@
 require('../../db.js');
 const Vehicle = require('../../collections/Vehicle.js');
 
-const putVehicleAddProcedureSheetCtrl = async (_id, procedureSheetId) => {
+const putVehicleAddMechanicalSheetCtrl = async (_id, mechanicalSheetId) => {
 
     const updatedVehicle = await Vehicle.updateOne(
         {_id},
-        { $push: { procedureSheets: procedureSheetId } }
+        { $push: { mechanicalSheets: mechanicalSheetId } }
     );
 
     return updatedVehicle;
 };
 
-module.exports = putVehicleAddProcedureSheetCtrl;
+module.exports = putVehicleAddMechanicalSheetCtrl;

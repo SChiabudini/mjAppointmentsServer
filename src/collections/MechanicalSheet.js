@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
-const getNextProcedureNumber = require('../utils/getNextProcedureNumber.js');
+const getNextMechanicalNumber = require('../utils/getNextMechanicalNumber.js');
 
-const procedureSheetSchema = new Schema ({
+const mechanicalSheetSchema = new Schema ({
     number: {
         type: String,
         unique: true
@@ -61,7 +61,7 @@ const procedureSheetSchema = new Schema ({
 
 // Middleware para ajustar la fecha antes de guardar
 
-procedureSheetSchema.pre('save', function(next) {
+mechanicalSheetSchema.pre('save', function(next) {
     if (!this.date) {
         const now = new Date();
         const offset = now.getTimezoneOffset() * 60000;
@@ -72,10 +72,10 @@ procedureSheetSchema.pre('save', function(next) {
 
 // Middleware para generar un número único antes de guardar
 
-procedureSheetSchema.pre('save', async function(next) {
+mechanicalSheetSchema.pre('save', async function(next) {
     if (!this.number) {
         try {
-            this.number = await getNextProcedureNumber();
+            this.number = await getNextMechanicalNumber();
             if (!this.number) {
                 throw new Error('Failed to generate number');
             }
@@ -86,4 +86,4 @@ procedureSheetSchema.pre('save', async function(next) {
     next();
 });
 
-module.exports = model('ProcedureSheet', procedureSheetSchema);
+module.exports = model('MechanicalSheet', mechanicalSheetSchema);

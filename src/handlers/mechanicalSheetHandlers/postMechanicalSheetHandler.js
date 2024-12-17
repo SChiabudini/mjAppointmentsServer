@@ -1,6 +1,6 @@
-const postProcedureSheetCtrl = require('../../controllers/procedureSheetCtrls/postProcedureSheetCtrl.js');
+const postMechanicalSheetCtrl = require('../../controllers/mechanicalSheetCtrls/postMechanicalSheetCtrl.js');
 
-const postProcedureSheetHandler = async (req, res) => {
+const postMechanicalSheetHandler = async (req, res) => {
 
     const { personClient, companyClient, vehicle, kilometers, keyWords, description, amount } = req.body;
 
@@ -38,12 +38,12 @@ const postProcedureSheetHandler = async (req, res) => {
             return res.status(400).send({ error: 'Incorrect DataType - amount' });
         }
 
-        const newProcedureSheet = await postProcedureSheetCtrl(personClient, companyClient, vehicle, kilometers, keyWords, description, amount);
-        res.status(200).send(newProcedureSheet);
+        const newMechanicalSheet = await postMechanicalSheetCtrl(personClient, companyClient, vehicle, kilometers, keyWords, description, amount);
+        res.status(200).send(newMechanicalSheet);
 
     } catch (error) {
         return res.status(500).send(error.message);
     }
 };
 
-module.exports = postProcedureSheetHandler;
+module.exports = postMechanicalSheetHandler;

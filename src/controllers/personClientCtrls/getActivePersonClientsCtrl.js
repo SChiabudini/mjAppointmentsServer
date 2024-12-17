@@ -5,7 +5,7 @@ const getActivePersonClientsCtrl = async () => {
     const activePersonClients = await PersonClient.find({ active: true })
     .populate('vehicles')
     .populate('serviceSheets')
-    .populate('procedureSheets');
+    .populate('mechanicalSheets');
 
     return activePersonClients;
 };
