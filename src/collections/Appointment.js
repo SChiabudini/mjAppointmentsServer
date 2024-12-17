@@ -7,22 +7,12 @@ const appointmentSchema = new Schema ({
         required: true,
         message: 'Invalid Start Date and Time'
     },
+
     end: { 
         type: Date,
         required: true,
         message: 'Invalid End Date and Time'
     },
-
-    // date: {
-    //     type: String,
-    //     required: true,
-    //     message: 'Invalid Date'
-    // },
-    // time: {
-    //     type: String,
-    //     required: true,
-    //     message: 'Invalid Time'
-    // },
 
     personClient: {
         type: Schema.Types.ObjectId,
@@ -42,18 +32,8 @@ const appointmentSchema = new Schema ({
         required: true
     },
 
-    mechanical: {
-        type: Boolean,
-        default: false
-    },
-
-    service: {
-        type: Boolean,
-        default: false
-    },
-
     procedure: {
-        type: String,
+        type: Object,
         required: true,
         message: 'Invalid Procedure'
     },
