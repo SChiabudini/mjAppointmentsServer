@@ -9,7 +9,7 @@ const getCompanyClientsByCuitCtrl = async (cuit) => {
     const companyClients = await CompanyClient.find({ cuit: regex })
     .populate('vehicles')
     .populate('serviceSheets')
-    .populate('procedureSheets');
+    .populate('mechanicalSheets');
     return companyClients;
   };
 };

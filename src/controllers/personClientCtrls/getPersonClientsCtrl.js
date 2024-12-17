@@ -5,7 +5,7 @@ const getPersonClientsCtrl = async () => {
     const personClients = await PersonClient.find()
     .populate('vehicles')
     .populate('serviceSheets')
-    .populate('procedureSheets');
+    .populate('mechanicalSheets');
     
     return personClients;
 };

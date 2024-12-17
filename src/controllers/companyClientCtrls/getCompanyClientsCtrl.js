@@ -5,7 +5,7 @@ const getCompanyClientsCtrl = async () => {
     const companyClients = await CompanyClient.find()
     .populate('vehicles')
     .populate('serviceSheets')
-    .populate('procedureSheets');;
+    .populate('mechanicalSheets');;
 
     return companyClients;
 };

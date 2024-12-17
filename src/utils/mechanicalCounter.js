@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
 
-const procedureCounterSchema = new Schema({
+const mechanicalCounterSchema = new Schema({
     name: { type: String, required: true, unique: true },
     value: { type: Number, default: 0 }
 });
 
-const ProcedureCounter = model('ProcedureCounter', procedureCounterSchema);
+const MechanicalCounter = model('MechanicalCounter', mechanicalCounterSchema);
 
-module.exports = ProcedureCounter;
+module.exports = MechanicalCounter;

@@ -15,7 +15,7 @@ const getActivePersonClientsByNameCtrl = async (name) => {
     const activePersonClients = await PersonClient.find({ name: regex, active: true })
     .populate('vehicles')
     .populate('serviceSheets')
-    .populate('procedureSheets');
+    .populate('mechanicalSheets');
 
     return activePersonClients;
   };

@@ -1,14 +1,14 @@
 require('../../db.js');
 const CompanyClient = require('../../collections/CompanyClient.js');
 
-const putCompanyClientAddProcedureSheetCtrl = async (_id, procedureSheetId) => {
+const putCompanyClientAddMechanicalSheetCtrl = async (_id, mechanicalSheetId) => {
 
     const updatedCompanyClient = await CompanyClient.updateOne(
         {_id},
-        { $push: { procedureSheets: procedureSheetId } }
+        { $push: { mechanicalSheets: mechanicalSheetId } }
     );
 
     return updatedCompanyClient;
 };
 
-module.exports = putCompanyClientAddProcedureSheetCtrl;
+module.exports = putCompanyClientAddMechanicalSheetCtrl;

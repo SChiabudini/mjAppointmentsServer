@@ -46,10 +46,10 @@ const companyClientSchema = new Schema ({
         }
     ],
 
-    procedureSheets: [
+    mechanicalSheets: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'ProcedureSheet'
+            ref: 'MechanicalSheet'
         }
     ],
 

@@ -9,7 +9,7 @@ const getPersonClientsByDniCtrl = async (dni) => {
     const personClients = await PersonClient.find({ dni: regex })
     .populate('vehicles')
     .populate('serviceSheets')
-    .populate('procedureSheets');
+    .populate('mechanicalSheets');
     
     return personClients;
   };
