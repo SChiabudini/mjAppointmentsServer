@@ -1,6 +1,6 @@
 const Appointment = require('../../collections/Appointment.js');
 
-const postAppointmentCtrl = async ( start, end, personClient, companyClient, vehicle, mechanical, service, procedure ) => {
+const postAppointmentCtrl = async ( start, end, personClient, companyClient, vehicle, procedure ) => {    
 
     const newAppointment = {
         start,
@@ -8,10 +8,10 @@ const postAppointmentCtrl = async ( start, end, personClient, companyClient, veh
         personClient,
         companyClient,
         vehicle,
-        mechanical,
-        service,
         procedure
     };
+    console.log(newAppointment);
+
 
     const createdAppointment = await Appointment.create(newAppointment);
 
