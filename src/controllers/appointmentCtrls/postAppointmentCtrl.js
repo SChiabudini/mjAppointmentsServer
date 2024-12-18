@@ -10,8 +10,6 @@ const postAppointmentCtrl = async ( start, end, personClient, companyClient, veh
         vehicle,
         procedure
     };
-    console.log(newAppointment);
-
 
     const createdAppointment = await Appointment.create(newAppointment);
 
