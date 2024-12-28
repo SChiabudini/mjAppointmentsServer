@@ -19,7 +19,7 @@ const getAppointmentByIdCtrl = async (_id) => {
         });
 
         return appointmentById;
-    }
+    };
 
 };
 

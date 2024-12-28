@@ -8,6 +8,7 @@ const getActiveMechanicalSheetsByNumberHandler = require('./getActiveMechanicalS
 const getMechanicalSheetsByNumberHandler = require('./getMechanicalSheetsByNumberHandler.js');
 const getActiveMechanicalSheetsByVehicleHandler = require('./getActiveMechanicalSheetsByVehicleHandler.js');
 const getMechanicalSheetsByVehicleHandler = require('./getMechanicalSheetsByVehicleHandler.js');
+const getMechanicalSheetByIdCtrl = require('./getMechanicalSheetByIdHandler.js');
 const postMechanicalSheetHandler = require('./postMechanicalSheetHandler.js');
 
 module.exports = {
@@ -21,5 +22,6 @@ module.exports = {
     getMechanicalSheetsByNumberHandler,
     getActiveMechanicalSheetsByVehicleHandler,
     getMechanicalSheetsByVehicleHandler,
+    getMechanicalSheetByIdCtrl,
     postMechanicalSheetHandler
 }
