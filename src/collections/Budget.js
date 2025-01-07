@@ -9,7 +9,6 @@ const budgetSchema = new Schema ({
 
     start: {  
         type: Date,
-        required: true,
         message: 'Invalid Start Date and Time'
     },
 
@@ -56,6 +55,11 @@ const budgetSchema = new Schema ({
     total: {
         type: Number,
         required: true
+    },
+
+    active: {
+        type: Boolean,
+        default: true
     }
 });
 
