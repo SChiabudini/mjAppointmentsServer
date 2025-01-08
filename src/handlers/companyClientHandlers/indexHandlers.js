@@ -8,6 +8,7 @@ const getActiveCompanyClientsByNameHandler = require('./getActiveCompanyClientsB
 const getActiveCompanyClientsByVehicleHandler = require('./getActiveCompanyClientsByVehicleHandler.js');
 const getCompanyClientsByVehicleHandler = require('./getCompanyClientsByVehicleHandler.js');
 const postCompanyClientHandler = require('./postCompanyClientHandler.js');
+const putCompanyClientHandler = require('./putCompanyClientHandler.js');
 
 module.exports = {
     getCompanyClientsHandler,
@@ -19,5 +20,6 @@ module.exports = {
     getActiveCompanyClientsByNameHandler,
     getActiveCompanyClientsByVehicleHandler,
     getCompanyClientsByVehicleHandler,
-    postCompanyClientHandler
+    postCompanyClientHandler,
+    putCompanyClientHandler
 }
