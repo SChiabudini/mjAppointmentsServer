@@ -1,13 +1,12 @@
-const postPersonClientCtrl = require('../../controllers/personClientCtrls/postPersonClientCtrl.js');
-const getPersonClientsByDni = require('../../controllers/personClientCtrls/getPersonClientsByDniCtrl.js');
+const putPersonClientCtrls = require('../../controllers/personClientCtrls/putPersonClientCtrls.js');
 
 const putPersonClientHandler = async (req, res) => {
 
-    const { dni, name, email, phones, cuilCuit, vehicles } = req.body;
+    const { _id, dni, name, email, phones, cuilCuit, vehicles } = req.body;
 
     try {
 
-        if(typeof dni !== 'number'){
+        if(typeof dni !== 'string'){
             return res.status(400).send({ error: 'Incorrect DataType - dni' });
         }
 
@@ -31,7 +30,8 @@ const putPersonClientHandler = async (req, res) => {
             return res.status(400).send({ error: 'Incorrect DataType - vehicles' });
         }
 
-        const editPersonClient = await postPersonClientCtrl(dni, name, email, phones, cuilCuit, vehicles);
+        const editPersonClient = await putPersonClientCtrls(_id, dni, name, email, phones, cuilCuit, vehicles);
+
         res.status(200).send(editPersonClient);
 
     } catch (error) {

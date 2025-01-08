@@ -31,7 +31,7 @@ const putPersonClientCtrl = async (_id, dni, name, email, phones, cuilCuit, vehi
 
     try {
         // Realiza la actualización en la base de datos
-        const updatedPersonClient = await PersonClient.updateOne(_id, update, { new: true });
+        const updatedPersonClient = await PersonClient.updateOne({ _id }, update, { new: true });
 
         if (!updatedPersonClient) {
             throw new Error("Client not found");
