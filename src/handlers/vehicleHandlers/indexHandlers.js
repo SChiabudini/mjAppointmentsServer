@@ -6,6 +6,7 @@ const getVehiclesByClientHandler = require('./getVehiclesByClientHandler.js');
 const getActiveVehiclesByClientHandler = require('./getActiveVehiclesByClientHandler.js');
 const getActiveVehiclesByLicensePlateHandler = require('./getActiveVehiclesByLicensePlateHandler.js');
 const postVehicleHandler = require('./postVehicleHandler.js');
+const putVehicleHandler = require('./putVehicleHandler.js');
 
 module.exports = {
     getVehiclesHandler,
@@ -15,5 +16,6 @@ module.exports = {
     getVehiclesByClientHandler,
     getActiveVehiclesByClientHandler,
     getActiveVehiclesByLicensePlateHandler,
-    postVehicleHandler
+    postVehicleHandler,
+    putVehicleHandler
 }
