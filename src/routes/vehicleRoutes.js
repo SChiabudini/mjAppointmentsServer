@@ -1,5 +1,5 @@
 const vehicleRouter = require('express').Router();
-const { getVehiclesHandler, getActiveVehiclesHandler, getVehicleByIdHandler, getVehiclesByLicensePlateHandler, getVehiclesByClientHandler, getActiveVehiclesByClientHandler, getActiveVehiclesByLicensePlateHandler, postVehicleHandler } = require('../handlers/vehicleHandlers/indexHandlers.js');
+const { getVehiclesHandler, getActiveVehiclesHandler, getVehicleByIdHandler, getVehiclesByLicensePlateHandler, getVehiclesByClientHandler, getActiveVehiclesByClientHandler, getActiveVehiclesByLicensePlateHandler, postVehicleHandler, putVehicleHandler } = require('../handlers/vehicleHandlers/indexHandlers.js');
 
 vehicleRouter.get('/all', (req, res, next) => {
     const { licensePlate, client } = req.query;
@@ -33,5 +33,7 @@ vehicleRouter.get('/', (req, res, next) => {
 vehicleRouter.get('/:id', getVehicleByIdHandler);
 
 vehicleRouter.post('/', postVehicleHandler);
+
+vehicleRouter.put('/', putVehicleHandler);
 
 module.exports = vehicleRouter;
