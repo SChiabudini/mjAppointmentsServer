@@ -1,5 +1,5 @@
 const mechanicalSheetRouter = require('express').Router();
-const { getMechanicalSheetsHandler, getActiveMechanicalSheetsHandler, getActiveMechanicalSheetsByClientHandler, getMechanicalSheetsByClientHandler, getActiveMechanicalSheetsByKeyWordsHandler, getMechanicalSheetsByKeyWordsHandler, getActiveMechanicalSheetsByNumberHandler, getMechanicalSheetsByNumberHandler, getActiveMechanicalSheetsByVehicleHandler, getMechanicalSheetsByVehicleHandler, getMechanicalSheetByIdCtrl, postMechanicalSheetHandler } = require('../handlers/mechanicalSheetHandlers/indexHandlers.js');
+const { getMechanicalSheetsHandler, getActiveMechanicalSheetsHandler, getActiveMechanicalSheetsByClientHandler, getMechanicalSheetsByClientHandler, getActiveMechanicalSheetsByKeyWordsHandler, getMechanicalSheetsByKeyWordsHandler, getActiveMechanicalSheetsByNumberHandler, getMechanicalSheetsByNumberHandler, getActiveMechanicalSheetsByVehicleHandler, getMechanicalSheetsByVehicleHandler, getMechanicalSheetByIdCtrl, postMechanicalSheetHandler, putMechanicalSheetHandler } = require('../handlers/mechanicalSheetHandlers/indexHandlers.js');
 
 mechanicalSheetRouter.get('/all', (req, res, next) => {
 
@@ -52,5 +52,7 @@ mechanicalSheetRouter.get('/', (req, res, next) => {
 mechanicalSheetRouter.get('/:id', getMechanicalSheetByIdCtrl);
 
 mechanicalSheetRouter.post('/', postMechanicalSheetHandler);
+
+mechanicalSheetRouter.put('/', putMechanicalSheetHandler);
 
 module.exports = mechanicalSheetRouter;
