@@ -3,6 +3,8 @@ const postAppointmentCtrl = require('../../controllers/appointmentCtrls/postAppo
 const postAppointmentHandler = async (req, res) => {
 
     const { start, end, personClient, companyClient, vehicle, procedure } = req.body;
+    console.log(`start: ${start}`);
+    console.log(`end: ${end}`);
     
     try {
 
@@ -47,21 +49,6 @@ const postAppointmentHandler = async (req, res) => {
         if (typeof procedure.mechanical !== 'boolean') {
             return res.status(400).send({ error: 'Procedure mechanical must be a boolean' });
         };
-
-        // if (personClient) {
-        //     if (!personClient._id) {
-        //         return res.status(400).send({ error: 'Invalid personClient data' });
-        //     };
-        // };
-        // if (companyClient) {
-        //     if (!companyClient._id) {
-        //         return res.status(400).send({ error: 'Invalid companyClient data' });
-        //     };
-        // };
-
-        // if (!vehicle || !vehicle._id) {
-        //     return res.status(400).send({ error: 'Invalid vehicle data' });
-        // };
 
         const newAppointment = await postAppointmentCtrl(start, end, personClient, companyClient, vehicle, procedure);
         res.status(200).send(newAppointment);

@@ -3,7 +3,7 @@ const putAppointmentCtrl = require('../../controllers/appointmentCtrls/putAppoin
 const putAppointmentHandler = async (req, res) => {
 
     const { _id, start, end, personClient, companyClient, vehicle, procedure } = req.body;
-
+    
     try {
 
         if(typeof start !== 'string'){
@@ -14,15 +14,15 @@ const putAppointmentHandler = async (req, res) => {
             return res.status(400).send({ error: 'Incorrect DataType - end' });
         }
 
-        if(personClient !== null && typeof personClient !== 'object'){
+        if(personClient !== null && typeof personClient !== 'string'){
             return res.status(400).send({ error: 'Incorrect DataType - personClient' });
         }
 
-        if(personClient !== null && typeof companyClient !== 'object'){
+        if(companyClient !== null && typeof companyClient !== 'string'){
             return res.status(400).send({ error: 'Incorrect DataType - companyClient' });
         }
 
-        if(typeof vehicle !== 'object'){
+        if(typeof vehicle !== 'string'){
             return res.status(400).send({ error: 'Incorrect DataType - vehicle' });
         }
 
