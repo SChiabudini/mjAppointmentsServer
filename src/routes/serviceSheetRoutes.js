@@ -1,5 +1,5 @@
 const serviceSheetRouter = require('express').Router();
-const { getServiceSheetsHandler, getActiveServiceSheetsHandler, getActiveServiceSheetsByClientHandler, getServiceSheetsByClientHandler, getActiveServiceSheetsByNumberHandler, getServiceSheetsByNumberHandler, getActiveServiceSheetsByVehicleHandler, getServiceSheetsByVehicleHandler, getServiceSheetByIdHandler, postServiceSheetHandler } = require('../handlers/serviceSheetHandlers/indexHandlers.js');
+const { getServiceSheetsHandler, getActiveServiceSheetsHandler, getActiveServiceSheetsByClientHandler, getServiceSheetsByClientHandler, getActiveServiceSheetsByNumberHandler, getServiceSheetsByNumberHandler, getActiveServiceSheetsByVehicleHandler, getServiceSheetsByVehicleHandler, getServiceSheetByIdHandler, postServiceSheetHandler, putServiceSheetHandler } = require('../handlers/serviceSheetHandlers/indexHandlers.js');
 
 serviceSheetRouter.get('/all', (req, res, next) => {
 
@@ -44,5 +44,7 @@ serviceSheetRouter.get('/', (req, res, next) => {
 serviceSheetRouter.get('/:id', getServiceSheetByIdHandler);
 
 serviceSheetRouter.post('/', postServiceSheetHandler);
+
+serviceSheetRouter.put('/', putServiceSheetHandler);
 
 module.exports = serviceSheetRouter;
