@@ -7,11 +7,11 @@ const getMechanicalSheetByIdCtrl = async (_id) => {
         const mechanicalSheet = await MechanicalSheet.findOne({ _id })
         .populate({
             path: 'personClient',  
-            select: 'dni name email phones cuilCuit'
+            select: 'dni name email phones phoneWsp cuilCuit'
         })
         .populate({
             path: 'companyClient',  
-            select: 'cuit name email phones address'
+            select: 'cuit name email phones phoneWsp address'
         })
         .populate({
             path: 'vehicle',  
