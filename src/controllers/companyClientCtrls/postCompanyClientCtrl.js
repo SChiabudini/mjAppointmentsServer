@@ -1,13 +1,14 @@
 const CompanyClient = require('../../collections/CompanyClient.js');
 const putVehicleAddCompanyClientCtrl = require('../vehicleCtrls/putVehicleAddCompanyClientCtrl.js');
 
-const postCompanyClientCtrl = async (cuit, name, email, phones, address, vehicles) => {
+const postCompanyClientCtrl = async (cuit, name, email, phones, phoneWsp, address, vehicles) => {
 
     const newCompanyClient = {
         cuit,
         name,
         email,
         phones,
+        phoneWsp,
         address,
         vehicles
     };

@@ -2,7 +2,7 @@ const putCompanyClientCtrl = require('../../controllers/companyClientCtrls/putCo
 
 const putCompanyClientHandler = async (req, res) => {
 
-    const { _id, cuit, name, email, phones, address, vehicles } = req.body;
+    const { _id, cuit, name, email, phones, phoneWsp, address, vehicles } = req.body;
 
     try {
 
@@ -22,6 +22,10 @@ const putCompanyClientHandler = async (req, res) => {
             return res.status(400).send({ error: 'Incorrect DataType - phones' });
         }
 
+        if(typeof phoneWsp !== 'number' || isNaN(phoneWsp)){
+            return res.status(400).send({ error: 'Incorrect DataType - phoneWsp' });
+        }
+
         if(address && typeof address !== 'string'){
             return res.status(400).send({ error: 'Incorrect DataType - address' });
         }
@@ -30,7 +34,7 @@ const putCompanyClientHandler = async (req, res) => {
             return res.status(400).send({ error: 'Incorrect DataType - vehicles' });
         }
 
-        const editCompanyClient = await putCompanyClientCtrl(_id, cuit, name, email, phones, address, vehicles);
+        const editCompanyClient = await putCompanyClientCtrl(_id, cuit, name, email, phones, phoneWsp, address, vehicles);
 
         res.status(200).send(editCompanyClient);
 

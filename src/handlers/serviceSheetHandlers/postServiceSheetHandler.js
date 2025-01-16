@@ -42,7 +42,7 @@ const postServiceSheetHandler = async (req, res) => {
             return res.status(400).send({ error: 'Incorrect DataType - notes' });
         }
 
-        if(typeof amount !== 'number'){
+        if(typeof amount !== 'number' || isNaN(amount)){
             return res.status(400).send({ error: 'Incorrect DataType - amount' });
         }
 

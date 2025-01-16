@@ -3,11 +3,11 @@ const getCompanyClientsByCuit = require('../../controllers/companyClientCtrls/ge
 
 const postCompanyClientHandler = async (req, res) => {
 
-    const { cuit, name, email, phones, address, vehicles } = req.body;
+    const { cuit, name, email, phones, phoneWsp, address, vehicles } = req.body;
 
     try {
         
-        if(!cuit || !name || !email || !phones) {
+        if(!cuit || !name || !email || (!phones || !phoneWsp)) {
             return res.status(400).send({ error: 'Missing data' });
         }
 
@@ -32,6 +32,10 @@ const postCompanyClientHandler = async (req, res) => {
             return res.status(400).send({ error: 'Incorrect DataType - phones' });
         }
 
+        if(typeof phoneWsp !== 'number' || isNaN(phoneWsp)){
+            return res.status(400).send({ error: 'Incorrect DataType - phoneWsp' });
+        }
+
         if(address && typeof address !== 'string'){
             return res.status(400).send({ error: 'Incorrect DataType - address' });
         }
@@ -40,7 +44,7 @@ const postCompanyClientHandler = async (req, res) => {
             return res.status(400).send({ error: 'Incorrect DataType - vehicles' });
         }
 
-        const newCompanyClient = await postCompanyClientCtrl(cuit, name, email, phones, address, vehicles);
+        const newCompanyClient = await postCompanyClientCtrl(cuit, name, email, phones, phoneWsp, address, vehicles);
         res.status(200).send(newCompanyClient);
 
     } catch (error) {

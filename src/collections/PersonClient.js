@@ -23,10 +23,16 @@ const personClientSchema = new Schema ({
     phones: [
         {
             type: String,
-            required: true,
+            // required: true,
             message: 'Invalid Phone'
         }
     ],
+
+    phoneWhatsapp: {
+        type: Number,
+        // required: true,
+        message: 'Invalid phone whatsapp'
+    },
 
     cuilCuit: {
         type: String
