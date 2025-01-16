@@ -23,10 +23,14 @@ const companyClientSchema = new Schema ({
     phones: [
         {
             type: String,
-            required: true,
             message: 'Invalid Phone'
         }
     ],
+
+    phoneWhatsapp: {
+        type: Number,
+        message: 'Invalid phone whatsapp'
+    },
 
     address: {
         type: String

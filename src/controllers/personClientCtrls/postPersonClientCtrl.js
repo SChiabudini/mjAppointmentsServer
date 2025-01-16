@@ -1,13 +1,14 @@
 const PersonClient = require('../../collections/PersonClient.js');
 const putVehicleAddPersonClientCtrl = require('../vehicleCtrls/putVehicleAddPersonClientCtrl.js');
 
-const postPersonClientCtrl = async (dni, name, email, phones, cuilCuit, vehicles) => {
+const postPersonClientCtrl = async (dni, name, email, phones, phoneWsp, cuilCuit, vehicles) => {
 
     const newPersonClient = {
         dni,
         name,
         email,
         phones,
+        phoneWsp,
         cuilCuit,
         vehicles
     };
