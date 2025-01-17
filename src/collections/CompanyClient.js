@@ -27,8 +27,9 @@ const companyClientSchema = new Schema ({
         }
     ],
 
-    phoneWhatsapp: {
-        type: Number,
+    phoneWsp: {
+        type: String,
+        // required: true,
         message: 'Invalid phone whatsapp'
     },
 

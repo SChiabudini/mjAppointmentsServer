@@ -32,7 +32,10 @@ const postCompanyClientHandler = async (req, res) => {
             return res.status(400).send({ error: 'Incorrect DataType - phones' });
         }
 
-        if(typeof phoneWsp !== 'number' || isNaN(phoneWsp)){
+        // if(typeof phoneWsp !== 'number' || isNaN(phoneWsp)){
+        //     return res.status(400).send({ error: 'Incorrect DataType - phoneWsp' });
+        // }
+        if(typeof phoneWsp !== 'string'){
             return res.status(400).send({ error: 'Incorrect DataType - phoneWsp' });
         }
 
