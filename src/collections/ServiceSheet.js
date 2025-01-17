@@ -80,8 +80,10 @@ const serviceSheetSchema = new Schema ({
 serviceSheetSchema.pre('save', function(next) {
     if (!this.date) {
         const now = new Date();
-        const offset = now.getTimezoneOffset() * 60000;
-        this.date = new Date(now.getTime() - offset);
+        this.date = now;
+        // const offset = now.getTimezoneOffset() * 60000;
+        // this.date = new Date(now.getTime() - offset);
+
     }
     next();
 });

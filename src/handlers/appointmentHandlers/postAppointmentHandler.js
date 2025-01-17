@@ -40,8 +40,8 @@ const postAppointmentHandler = async (req, res) => {
         if (typeof procedure.title !== 'string' || procedure.title.trim() === '') {
             return res.status(400).send({ error: 'Procedure title is required' });
         };
-        if (typeof procedure.description !== 'string' || procedure.description.trim() === '') {
-            return res.status(400).send({ error: 'Procedure description is required' });
+        if (typeof procedure.description !== 'string') {
+            return res.status(400).send({ error: 'Invalid description data' });
         };
         if (typeof procedure.service !== 'boolean') {
             return res.status(400).send({ error: 'Procedure service must be a boolean' });
