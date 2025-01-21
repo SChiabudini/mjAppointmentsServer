@@ -3,9 +3,9 @@ const schedule = require('node-schedule');
 
 const startScheduledJobs = async () => {
 
-    const anualServiceReminderEmailTime = '57 21 * * *';
+    const anualServiceReminderEmailTime = '26 19 * * *';
 
-    const appointmentReminderEmailTime = '57 21 * * *';
+    const appointmentReminderEmailTime = '26 19 * * *';
 
     console.log("Inicializando tareas programadas...");
 
