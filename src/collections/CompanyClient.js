@@ -19,6 +19,11 @@ const companyClientSchema = new Schema ({
         required: true,
         message: 'Invalid Email'
     },
+    
+    phoneWsp: {
+        type: Object,
+        message: 'Invalid phone whatsapp'
+    },
 
     phones: [
         {
@@ -26,12 +31,6 @@ const companyClientSchema = new Schema ({
             message: 'Invalid Phone'
         }
     ],
-
-    phoneWsp: {
-        type: String,
-        // required: true,
-        message: 'Invalid phone whatsapp'
-    },
 
     address: {
         type: String
