@@ -3,11 +3,11 @@ const getCompanyClientsByCuit = require('../../controllers/companyClientCtrls/ge
 
 const postCompanyClientHandler = async (req, res) => {
 
-    const { cuit, name, email, phones, phoneWsp, address, vehicles } = req.body;
+    const { cuit, name, email, phoneWsp, phones, address, vehicles } = req.body;
 
     try {
         
-        if(!cuit || !name || !email || (!phones || !phoneWsp)) {
+        if(!cuit || !name || !email || (!phoneWsp || !phones)) {
             return res.status(400).send({ error: 'Missing data' });
         }
 
@@ -28,15 +28,12 @@ const postCompanyClientHandler = async (req, res) => {
             return res.status(400).send({ error: 'Incorrect DataType - email' });
         }
 
-        if (!Array.isArray(phones)) {
-            return res.status(400).send({ error: 'Incorrect DataType - phones' });
+        if(typeof phoneWsp !== 'object'){
+            return res.status(400).send({ error: 'Incorrect DataType - phoneWsp' });
         }
 
-        // if(typeof phoneWsp !== 'number' || isNaN(phoneWsp)){
-        //     return res.status(400).send({ error: 'Incorrect DataType - phoneWsp' });
-        // }
-        if(typeof phoneWsp !== 'string'){
-            return res.status(400).send({ error: 'Incorrect DataType - phoneWsp' });
+        if (!Array.isArray(phones)) {
+            return res.status(400).send({ error: 'Incorrect DataType - phones' });
         }
 
         if(address && typeof address !== 'string'){
@@ -47,7 +44,7 @@ const postCompanyClientHandler = async (req, res) => {
             return res.status(400).send({ error: 'Incorrect DataType - vehicles' });
         }
 
-        const newCompanyClient = await postCompanyClientCtrl(cuit, name, email, phones, phoneWsp, address, vehicles);
+        const newCompanyClient = await postCompanyClientCtrl(cuit, name, email, phoneWsp, phones, address, vehicles);
         res.status(200).send(newCompanyClient);
 
     } catch (error) {

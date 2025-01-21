@@ -3,11 +3,11 @@ const getPersonClientsByDni = require('../../controllers/personClientCtrls/getPe
 
 const postPersonClientHandler = async (req, res) => {
 
-    const { dni, name, email, phones, phoneWsp, cuilCuit, vehicles } = req.body;
+    const { dni, name, email, phoneWsp, phones, cuilCuit, vehicles } = req.body;
 
     try {
         
-        if(!dni || !name || !email || (!phones || !phoneWsp)) {
+        if(!dni || !name || !email || (!phoneWsp || !phones)) {
             return res.status(400).send({ error: 'Missing data' });
         }
 
@@ -28,12 +28,12 @@ const postPersonClientHandler = async (req, res) => {
             return res.status(400).send({ error: 'Incorrect DataType - email' });
         }
 
-        if (!Array.isArray(phones)) {
-            return res.status(400).send({ error: 'Incorrect DataType - phones' });
+        if(typeof phoneWsp !== 'object'){
+            return res.status(400).send({ error: 'Incorrect DataType - phoneWsp' });
         }
 
-        if(typeof phoneWsp !== 'number' || isNaN(phoneWsp)){
-            return res.status(400).send({ error: 'Incorrect DataType - phoneWsp' });
+        if (!Array.isArray(phones)) {
+            return res.status(400).send({ error: 'Incorrect DataType - phones' });
         }
 
         if(cuilCuit && typeof cuilCuit !== 'string'){
@@ -44,7 +44,7 @@ const postPersonClientHandler = async (req, res) => {
             return res.status(400).send({ error: 'Incorrect DataType - vehicles' });
         }
 
-        const newPersonClient = await postPersonClientCtrl(dni, name, email, phones, phoneWsp, cuilCuit, vehicles);
+        const newPersonClient = await postPersonClientCtrl(dni, name, email, phoneWsp, phones, cuilCuit, vehicles);
         res.status(200).send(newPersonClient);
 
     } catch (error) {

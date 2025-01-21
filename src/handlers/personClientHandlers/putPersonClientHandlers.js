@@ -2,7 +2,7 @@ const putPersonClientCtrls = require('../../controllers/personClientCtrls/putPer
 
 const putPersonClientHandler = async (req, res) => {
 
-    const { _id, dni, name, email, phones, cuilCuit, vehicles } = req.body;
+    const { _id, dni, name, email, phoneWsp, phones, cuilCuit, vehicles } = req.body;
 
     try {
 
@@ -18,6 +18,10 @@ const putPersonClientHandler = async (req, res) => {
             return res.status(400).send({ error: 'Incorrect DataType - email' });
         }
 
+        if(typeof phoneWsp !== 'object'){
+            return res.status(400).send({ error: 'Incorrect DataType - phoneWsp' });
+        }
+
         if (!Array.isArray(phones)) {
             return res.status(400).send({ error: 'Incorrect DataType - phones' });
         }
@@ -30,7 +34,7 @@ const putPersonClientHandler = async (req, res) => {
             return res.status(400).send({ error: 'Incorrect DataType - vehicles' });
         }
 
-        const editPersonClient = await putPersonClientCtrls(_id, dni, name, email, phones, cuilCuit, vehicles);
+        const editPersonClient = await putPersonClientCtrls(_id, dni, name, email, phoneWsp, phones, cuilCuit, vehicles);
 
         res.status(200).send(editPersonClient);
 
