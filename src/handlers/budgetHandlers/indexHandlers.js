@@ -8,6 +8,7 @@ const getBudgetsByClientHandler = require('./getBudgetsByClientHandler.js');
 const getActiveBudgetsByVehicleHandler = require('./getActiveBudgetsByVehicleHandler.js');
 const getBudgetsByVehicleHandler = require('./getBudgetsByVehicleHandler.js');
 const postBudgetHandler = require('./postBudgetHandler.js');
+const putBudgetStatusHandler = require('./putBudgetStatusHandler.js');
 
 module.exports = {
     getBudgetsHandler,
@@ -19,5 +20,6 @@ module.exports = {
     getBudgetsByClientHandler,
     getActiveBudgetsByVehicleHandler,
     getBudgetsByVehicleHandler,
-    postBudgetHandler
+    postBudgetHandler,
+    putBudgetStatusHandler
 }

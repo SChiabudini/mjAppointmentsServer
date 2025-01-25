@@ -1,5 +1,5 @@
 const budgetRouter = require('express').Router();
-const { getBudgetsHandler, getActiveBudgetsHandler, getBudgetByIdHandler, getActiveBudgetsByNumberHandler, getBudgetsByNumberHandler, getActiveBudgetsByClientHandler, getBudgetsByClientHandler, getActiveBudgetsByVehicleHandler, getBudgetsByVehicleHandler, postBudgetHandler } = require('../handlers/budgetHandlers/indexHandlers.js');
+const { getBudgetsHandler, getActiveBudgetsHandler, getBudgetByIdHandler, getActiveBudgetsByNumberHandler, getBudgetsByNumberHandler, getActiveBudgetsByClientHandler, getBudgetsByClientHandler, getActiveBudgetsByVehicleHandler, getBudgetsByVehicleHandler, postBudgetHandler, putBudgetStatusHandler } = require('../handlers/budgetHandlers/indexHandlers.js');
 
 budgetRouter.get('/all', (req, res, next) => {
 
@@ -44,5 +44,7 @@ budgetRouter.get('/', (req, res, next) => {
 budgetRouter.get('/:id', getBudgetByIdHandler);
 
 budgetRouter.post('/', postBudgetHandler);
+
+budgetRouter.put('/status/:id', putBudgetStatusHandler);
 
 module.exports = budgetRouter;

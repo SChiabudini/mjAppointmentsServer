@@ -5,7 +5,7 @@ const getActiveCompanyClientsCtrl = async () => {
     const activeCompanyClients = await CompanyClient.find({ active: true })
     .populate('vehicles')
     .populate('serviceSheets')
-    .populate('mechanicalSheets');;
+    .populate('mechanicalSheets');
 
     return activeCompanyClients;
 };
