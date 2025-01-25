@@ -1,17 +1,17 @@
 const { anualServiceReminderEmail, appointmentReminderEmail } = require("./notifications/index.js");
 const schedule = require('node-schedule');
 
-const startScheduledJobs = async () => {
+const startScheduledJobs = async (sgMail) => {
 
-    const anualServiceReminderEmailTime = '26 19 * * *';
+    const anualServiceReminderEmailTime = '12 21 * * *';
 
-    const appointmentReminderEmailTime = '26 19 * * *';
+    const appointmentReminderEmailTime = '12 21 * * *';
 
     console.log("Inicializando tareas programadas...");
 
-    schedule.scheduleJob(anualServiceReminderEmailTime, anualServiceReminderEmail); 
+    schedule.scheduleJob(anualServiceReminderEmailTime, () => anualServiceReminderEmail(sgMail)); 
 
-    schedule.scheduleJob(appointmentReminderEmailTime, appointmentReminderEmail);
+    schedule.scheduleJob(appointmentReminderEmailTime, () => appointmentReminderEmail(sgMail));
 
     console.log("Tareas programadas inicializadas.");
 }

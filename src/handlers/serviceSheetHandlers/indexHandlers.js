@@ -9,6 +9,7 @@ const getServiceSheetsByVehicleHandler = require('./getServiceSheetsByVehicleHan
 const getServiceSheetByIdHandler = require('./getServiceSheetByIdHandler.js');
 const postServiceSheetHandler = require('./postServiceSheetHandler.js');
 const putServiceSheetHandler = require('./putServiceSheetHandler.js');
+const putServiceSheetStatusHandler = require('./putServiceSheetStatusHandler.js');
 
 module.exports = {
     getServiceSheetsHandler,
@@ -21,5 +22,6 @@ module.exports = {
     getServiceSheetsByVehicleHandler,
     getServiceSheetByIdHandler,
     postServiceSheetHandler,
-    putServiceSheetHandler
+    putServiceSheetHandler,
+    putServiceSheetStatusHandler
 }

@@ -9,6 +9,7 @@ const getActivePersonClientsByVehicleHandler = require('./getActivePersonClients
 const getPersonClientsByVehicleHandler = require ('./getPersonClientsByVehicleHandler.js');
 const postPersonClientHandler = require('./postPersonClientHandler.js');
 const putPersonClientHandler = require('./putPersonClientHandlers.js');
+const putPersonClientStatusHandler = require('./putPersonClientStatusHandler.js');
 
 module.exports = {
     getPersonClientsHandler,
@@ -21,5 +22,6 @@ module.exports = {
     getActivePersonClientsByVehicleHandler,
     getPersonClientsByVehicleHandler,
     postPersonClientHandler,
-    putPersonClientHandler
+    putPersonClientHandler,
+    putPersonClientStatusHandler
 }
