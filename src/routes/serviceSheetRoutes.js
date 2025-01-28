@@ -1,5 +1,5 @@
 const serviceSheetRouter = require('express').Router();
-const { getServiceSheetsHandler, getActiveServiceSheetsHandler, getActiveServiceSheetsByClientHandler, getServiceSheetsByClientHandler, getActiveServiceSheetsByNumberHandler, getServiceSheetsByNumberHandler, getActiveServiceSheetsByVehicleHandler, getServiceSheetsByVehicleHandler, getServiceSheetByIdHandler, postServiceSheetHandler, putServiceSheetHandler, putServiceSheetStatusHandler } = require('../handlers/serviceSheetHandlers/indexHandlers.js');
+const { getServiceSheetsHandler, getActiveServiceSheetsHandler, getActiveServiceSheetsByClientHandler, getServiceSheetsByClientHandler, getActiveServiceSheetsByNumberHandler, getServiceSheetsByNumberHandler, getActiveServiceSheetsByVehicleHandler, getServiceSheetsByVehicleHandler, getActiveServiceSheetsByDateHandler, getServiceSheetsByDateHandler, getServiceSheetByIdHandler, postServiceSheetHandler, putServiceSheetHandler, putServiceSheetStatusHandler } = require('../handlers/serviceSheetHandlers/indexHandlers.js');
 
 serviceSheetRouter.get('/all', (req, res, next) => {
 
@@ -21,6 +21,8 @@ serviceSheetRouter.get('/all', (req, res, next) => {
 
 });
 
+serviceSheetRouter.get('/all/date', getServiceSheetsByDateHandler);
+
 serviceSheetRouter.get('/', (req, res, next) => {
 
     const { client, number, vehicle } = req.query;
@@ -40,6 +42,8 @@ serviceSheetRouter.get('/', (req, res, next) => {
     return getActiveServiceSheetsHandler(req, res, next);
 
 });
+
+serviceSheetRouter.get('/date', getActiveServiceSheetsByDateHandler);
 
 serviceSheetRouter.get('/:id', getServiceSheetByIdHandler);
 
