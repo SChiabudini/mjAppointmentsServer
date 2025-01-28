@@ -6,6 +6,8 @@ const getActiveServiceSheetsByNumberHandler = require('./getActiveServiceSheetsB
 const getServiceSheetsByNumberHandler = require('./getServiceSheetsByNumberHandler.js');
 const getActiveServiceSheetsByVehicleHandler = require('./getActiveServiceSheetsByVehicleHandler.js');
 const getServiceSheetsByVehicleHandler = require('./getServiceSheetsByVehicleHandler.js');
+const getActiveServiceSheetsByDateHandler = require('./getActiveServiceSheetsByDateHandler.js');
+const getServiceSheetsByDateHandler = require('./getServiceSheetsByDateHandler.js');
 const getServiceSheetByIdHandler = require('./getServiceSheetByIdHandler.js');
 const postServiceSheetHandler = require('./postServiceSheetHandler.js');
 const putServiceSheetHandler = require('./putServiceSheetHandler.js');
@@ -21,6 +23,8 @@ module.exports = {
     getActiveServiceSheetsByVehicleHandler,
     getServiceSheetsByVehicleHandler,
     getServiceSheetByIdHandler,
+    getActiveServiceSheetsByDateHandler,
+    getServiceSheetsByDateHandler,
     postServiceSheetHandler,
     putServiceSheetHandler,
     putServiceSheetStatusHandler

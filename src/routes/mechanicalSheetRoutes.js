@@ -1,5 +1,5 @@
 const mechanicalSheetRouter = require('express').Router();
-const { getMechanicalSheetsHandler, getActiveMechanicalSheetsHandler, getActiveMechanicalSheetsByClientHandler, getMechanicalSheetsByClientHandler, getActiveMechanicalSheetsByKeyWordsHandler, getMechanicalSheetsByKeyWordsHandler, getActiveMechanicalSheetsByNumberHandler, getMechanicalSheetsByNumberHandler, getActiveMechanicalSheetsByVehicleHandler, getMechanicalSheetsByVehicleHandler, getMechanicalSheetByIdCtrl, postMechanicalSheetHandler, putMechanicalSheetHandler, putMechanicalSheetStatusHandler } = require('../handlers/mechanicalSheetHandlers/indexHandlers.js');
+const { getMechanicalSheetsHandler, getActiveMechanicalSheetsHandler, getActiveMechanicalSheetsByClientHandler, getMechanicalSheetsByClientHandler, getActiveMechanicalSheetsByKeyWordsHandler, getMechanicalSheetsByKeyWordsHandler, getActiveMechanicalSheetsByNumberHandler, getMechanicalSheetsByNumberHandler, getActiveMechanicalSheetsByVehicleHandler, getMechanicalSheetsByVehicleHandler, getActiveMechanicalSheetsByDateHandler, getMechanicalSheetsByDateHandler, getMechanicalSheetByIdCtrl, postMechanicalSheetHandler, putMechanicalSheetHandler, putMechanicalSheetStatusHandler } = require('../handlers/mechanicalSheetHandlers/indexHandlers.js');
 
 mechanicalSheetRouter.get('/all', (req, res, next) => {
 
@@ -25,6 +25,8 @@ mechanicalSheetRouter.get('/all', (req, res, next) => {
 
 });
 
+mechanicalSheetRouter.get('/all/date', getMechanicalSheetsByDateHandler);
+
 mechanicalSheetRouter.get('/', (req, res, next) => {
 
     const { client, keyWords, number, vehicle } = req.query;
@@ -48,6 +50,8 @@ mechanicalSheetRouter.get('/', (req, res, next) => {
     return getActiveMechanicalSheetsHandler(req, res, next);
 
 });
+
+mechanicalSheetRouter.get('/date', getActiveMechanicalSheetsByDateHandler);
 
 mechanicalSheetRouter.get('/:id', getMechanicalSheetByIdCtrl);
 
