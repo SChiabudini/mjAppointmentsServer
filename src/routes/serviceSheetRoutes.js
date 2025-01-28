@@ -3,7 +3,7 @@ const { getServiceSheetsHandler, getActiveServiceSheetsHandler, getActiveService
 
 serviceSheetRouter.get('/all', (req, res, next) => {
 
-    const { client, number, vehicle } = req.query;
+    const { client, number, vehicle, start, end } = req.query;
 
     if(client){
         return getServiceSheetsByClientHandler(req, res, next);
@@ -17,15 +17,17 @@ serviceSheetRouter.get('/all', (req, res, next) => {
         return getServiceSheetsByVehicleHandler(req, res, next);
     };
 
+    if(start && end){
+        return getServiceSheetsByDateHandler(req, res, next);
+    };
+
     return getServiceSheetsHandler(req, res, next);
 
 });
 
-serviceSheetRouter.get('/all/date', getServiceSheetsByDateHandler);
-
 serviceSheetRouter.get('/', (req, res, next) => {
 
-    const { client, number, vehicle } = req.query;
+    const { client, number, vehicle, start, end } = req.query;
 
     if(client){
         return getActiveServiceSheetsByClientHandler(req, res, next);
@@ -39,11 +41,13 @@ serviceSheetRouter.get('/', (req, res, next) => {
         return getActiveServiceSheetsByVehicleHandler(req, res, next);
     };
 
+    if(start && end){
+        return getActiveServiceSheetsByDateHandler(req, res, next);
+    };
+
     return getActiveServiceSheetsHandler(req, res, next);
 
 });
-
-serviceSheetRouter.get('/date', getActiveServiceSheetsByDateHandler);
 
 serviceSheetRouter.get('/:id', getServiceSheetByIdHandler);
 

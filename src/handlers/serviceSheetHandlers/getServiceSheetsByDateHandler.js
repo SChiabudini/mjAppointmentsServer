@@ -1,7 +1,7 @@
 const getServiceSheetsByDateCtrl = require('../../controllers/serviceSheetCtrls/getServiceSheetsByDateCtrl.js');
 
 const getServiceSheetsByDateHandler = async (req, res) => {
-    const { start, end } = req.body;  
+    const { start, end } = req.query;  
 
     try {
         const serviceSheetsByDate = await getServiceSheetsByDateCtrl(start, end);

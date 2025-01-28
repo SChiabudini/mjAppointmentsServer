@@ -1,7 +1,7 @@
 const getMechanicalSheetsByDateCtrl = require('../../controllers/mechanicalSheetCtrls/getMechanicalSheetsByDateCtrl.js');
 
 const getMechanicalSheetsByDateHandler = async (req, res) => {
-    const { start, end } = req.body;  
+    const { start, end } = req.query;  
 
     try {
         const mechanicalSheetsByDate = await getMechanicalSheetsByDateCtrl(start, end);
