@@ -3,9 +3,10 @@ const putPersonClientAddServiceSheetCtrl = require('../personClientCtrls/putPers
 const putCompanyClientAddServiceSheetCtrl = require('../personClientCtrls/putPersonClientAddServiceSheetCtrl.js');
 const putVehicleAddServiceSheetCtrl = require('../vehicleCtrls/putVehicleAddServiceSheetCtrl.js');
 
-const postServiceSheetCtrl = async (personClient, companyClient, vehicle, kilometers, kmsToNextService, oil, filters, notes, amount) => {
+const postServiceSheetCtrl = async (date, personClient, companyClient, vehicle, kilometers, kmsToNextService, oil, filters, notes, amount) => {
 
     const newServiceSheet = {
+        date,
         personClient,
         companyClient,
         vehicle,

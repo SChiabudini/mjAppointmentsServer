@@ -2,13 +2,17 @@ const postServiceSheetCtrl = require('../../controllers/serviceSheetCtrls/postSe
 
 const postServiceSheetHandler = async (req, res) => {
 
-    const { personClient, companyClient, vehicle, kilometers, kmsToNextService, oil, filters, notes, amount } = req.body;
+    const { date, personClient, companyClient, vehicle, kilometers, kmsToNextService, oil, filters, notes, amount } = req.body;
 
     try {
         
-        if(!vehicle || !kilometers || !kmsToNextService || !oil || !filters || !amount) {
+        if(!date || !vehicle || !kilometers || !kmsToNextService || !oil || !filters || !amount) {
             return res.status(400).send({ error: 'Missing data' });
         }
+
+        if (isNaN(Date.parse(date))) {
+            return res.status(400).send({ error: 'Invalid or missing date' });
+        };
 
         if(personClient && typeof personClient !== 'string'){
             return res.status(400).send({ error: 'Incorrect DataType - personClient' });
@@ -46,7 +50,7 @@ const postServiceSheetHandler = async (req, res) => {
             return res.status(400).send({ error: 'Incorrect DataType - amount' });
         }
 
-        const newServiceSheet = await postServiceSheetCtrl(personClient, companyClient, vehicle, kilometers, kmsToNextService, oil, filters, notes, amount);
+        const newServiceSheet = await postServiceSheetCtrl(date, personClient, companyClient, vehicle, kilometers, kmsToNextService, oil, filters, notes, amount);
         res.status(200).send(newServiceSheet);
 
     } catch (error) {

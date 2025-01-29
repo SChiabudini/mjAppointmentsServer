@@ -1,9 +1,13 @@
 require('../../db.js');
 const MechanicalSheet = require('../../collections/MechanicalSheet.js');
 
-const putMechanicalSheetCtrl = async (_id, personClient, companyClient, vehicle, kilometers, keyWords, description, amount) => {
+const putMechanicalSheetCtrl = async (_id, date, personClient, companyClient, vehicle, kilometers, keyWords, description, amount) => {
 
     const update = {};
+
+    if (date !== undefined) {
+        update.date = date;
+    };
 
     if (personClient !== undefined) {
         update.personClient = personClient;

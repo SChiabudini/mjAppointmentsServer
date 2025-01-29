@@ -2,13 +2,17 @@ const postMechanicalSheetCtrl = require('../../controllers/mechanicalSheetCtrls/
 
 const postMechanicalSheetHandler = async (req, res) => {
 
-    const { personClient, companyClient, vehicle, kilometers, keyWords, description, amount } = req.body;
+    const { date, personClient, companyClient, vehicle, kilometers, keyWords, description, amount } = req.body;
 
     try {
         
-        if(!vehicle || !kilometers || !keyWords || !description || !amount) {
+        if(!date || !vehicle || !kilometers || !keyWords || !description || !amount) {
             return res.status(400).send({ error: 'Missing data' });
         }
+
+        if (isNaN(Date.parse(date))) {
+            return res.status(400).send({ error: 'Invalid or missing date' });
+        };
 
         if(personClient && typeof personClient !== 'string'){
             return res.status(400).send({ error: 'Incorrect DataType - personClient' });
@@ -38,7 +42,7 @@ const postMechanicalSheetHandler = async (req, res) => {
             return res.status(400).send({ error: 'Incorrect DataType - amount' });
         }
 
-        const newMechanicalSheet = await postMechanicalSheetCtrl(personClient, companyClient, vehicle, kilometers, keyWords, description, amount);
+        const newMechanicalSheet = await postMechanicalSheetCtrl(date, personClient, companyClient, vehicle, kilometers, keyWords, description, amount);
         res.status(200).send(newMechanicalSheet);
 
     } catch (error) {

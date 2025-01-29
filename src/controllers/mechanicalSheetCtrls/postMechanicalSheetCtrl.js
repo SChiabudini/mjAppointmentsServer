@@ -3,9 +3,10 @@ const putPersonClientAddMechanicalSheetCtrl = require('../personClientCtrls/putP
 const putCompanyClientAddMechanicalSheetCtrl = require('../companyClientCtrls/putCompanyClientAddMechanicalSheetCtrl.js');
 const putVehicleAddMechanicalSheetCtrl = require('../vehicleCtrls/putVehicleAddMechanicalSheetCtrl.js');
 
-const postMechanicalSheetCtrl = async (personClient, companyClient, vehicle, kilometers, keyWords, description, amount) => {
+const postMechanicalSheetCtrl = async (date, personClient, companyClient, vehicle, kilometers, keyWords, description, amount) => {
 
     const newMechanicalSheet = {
+        date,
         personClient,
         companyClient,
         vehicle,
