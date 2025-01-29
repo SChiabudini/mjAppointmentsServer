@@ -9,12 +9,11 @@ const budgetSchema = new Schema ({
 
     start: {  
         type: Date,
-        message: 'Invalid Start Date and Time'
+        message: 'Invalid Start Date and Time',
     },
 
     end: { 
         type: Date,
-        required: true,
         message: 'Invalid End Date and Time'
     },
 
@@ -67,9 +66,12 @@ const budgetSchema = new Schema ({
 
 budgetSchema.pre('save', function(next) {
     if (!this.start) {
-        const now = new Date();
-        const offset = now.getTimezoneOffset() * 60000;
-        this.start = new Date(now.getTime() - offset);
+        this.start = new Date();
+    }
+
+    if (!this.end) {
+        this.end = new Date(this.start);
+        this.end.setDate(this.end.getDate() + 7);
     }
     next();
 });
