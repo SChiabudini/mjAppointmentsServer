@@ -11,7 +11,8 @@ const serviceSheetSchema = new Schema ({
 
     date: {
         type: Date,
-        default: null
+        required: true,
+        message: 'Invalid date'
     },
 
     personClient: {
@@ -73,19 +74,6 @@ const serviceSheetSchema = new Schema ({
         type: Boolean,
         default: true
     }
-});
-
-// Middleware para ajustar la fecha antes de guardar
-
-serviceSheetSchema.pre('save', function(next) {
-    if (!this.date) {
-        const now = new Date();
-        this.date = now;
-        // const offset = now.getTimezoneOffset() * 60000;
-        // this.date = new Date(now.getTime() - offset);
-
-    }
-    next();
 });
 
 // Middleware para generar un número único antes de guardar

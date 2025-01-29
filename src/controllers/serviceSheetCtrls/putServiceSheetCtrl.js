@@ -1,9 +1,13 @@
 require('../../db.js');
 const ServiceSheet = require('../../collections/ServiceSheet.js');
 
-const putServiceSheetCtrl = async (_id, personClient, companyClient, vehicle, kilometers, kmsToNextService, oil, filters, notes, amount) => {
+const putServiceSheetCtrl = async (_id, date, personClient, companyClient, vehicle, kilometers, kmsToNextService, oil, filters, notes, amount) => {
 
     const update = {};
+
+    if (date !== undefined) {
+        update.date = date;
+    };
 
     if (personClient !== undefined) {
         update.personClient = personClient;
