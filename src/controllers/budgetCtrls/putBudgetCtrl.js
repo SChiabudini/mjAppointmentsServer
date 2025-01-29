@@ -5,11 +5,11 @@ const putBudgetCtrl = async (_id, personClient, companyClient, vehicle, items ) 
 
     const update = {};
 
-    if (personClient !== null && personClient !== false) {
+    if (personClient !== undefined) {
         update.personClient = personClient;
     };
 
-    if (companyClient !== null && companyClient !== false) {
+    if (companyClient !== undefined) {
         update.companyClient = companyClient;
     };
 
