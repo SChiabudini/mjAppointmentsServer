@@ -1,15 +1,15 @@
 require('../../db.js');
 const PersonClient = require('../../collections/PersonClient.js');
 
-const putPersonClientRemoveVehicleCtrl = async (_id, vehicleId) => {
+const putPersonClientRemoveServiceSheetCtrl = async (_id, sheetId) => {
 
     const updatedPersonClient = await PersonClient.findOneAndUpdate(
         { _id: _id },
-        { $pull: { vehicles: vehicleId } },
+        { $pull: { serviceSheets: sheetId } },
         { new: true }
     );
 
     return updatedPersonClient;
 };
 
-module.exports = putPersonClientRemoveVehicleCtrl;
+module.exports = putPersonClientRemoveServiceSheetCtrl;
