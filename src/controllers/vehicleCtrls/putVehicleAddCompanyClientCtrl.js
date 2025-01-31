@@ -5,7 +5,7 @@ const putVehicleAddCompanyClientCtrl = async (_id, companyClientId) => {
 
     const updatedVehicle = await Vehicle.updateOne(
         {_id},
-        { $set: { companyClient: companyClientId }}
+        { $set: { companyClient: companyClientId, personClient: null }}
     );
 
     return updatedVehicle;
