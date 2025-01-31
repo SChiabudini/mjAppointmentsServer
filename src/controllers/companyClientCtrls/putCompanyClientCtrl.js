@@ -1,7 +1,12 @@
 require('../../db.js');
 const CompanyClient = require('../../collections/CompanyClient.js');
+const getCompanyClientByIdCtrl = require('./getCompanyClientByIdCtrl.js');
+const putVehicleAddCompanyClientCtrl = require('../../controllers/vehicleCtrls/putVehicleAddCompanyClientCtrl.js');
+const putVehicleRemoveCompanyClientCtrl = require('../../controllers/vehicleCtrls/putVehicleRemoveCompanyClientCtrl.js');
 
-const putCompanyClientCtrl = async (_id, cuit, name, email, phoneWsp, phones, address, vehicles ) => {
+const putCompanyClientCtrl = async (_id, cuit, name, email, phoneWsp, phones, address, vehicles) => {
+
+    const oldCompanyClient = await getCompanyClientByIdCtrl(_id);
 
     const update = {};
 
@@ -17,7 +22,7 @@ const putCompanyClientCtrl = async (_id, cuit, name, email, phoneWsp, phones, ad
         update.email = email;
     };
 
-    if (phoneWsp !== null && phones !== false) {
+    if (phoneWsp !== null && phoneWsp !== false) {
         update.phoneWsp = phoneWsp;
     };
 
@@ -40,6 +45,30 @@ const putCompanyClientCtrl = async (_id, cuit, name, email, phoneWsp, phones, ad
         if (!updatedCompanyClient) {
             throw new Error("Company not found");
         };
+
+        // Comparar los arrays de vehículos
+        const oldVehicles = oldCompanyClient.vehicles || [];
+        const newVehicles = vehicles || [];
+
+        // Extraer los _id de los vehículos antiguos y nuevos
+        const oldVehicleIds = oldVehicles.map(vehicle => vehicle._id.toString());
+        const newVehicleIds = newVehicles.map(vehicle => vehicle._id.toString());
+
+        // Encontrar vehículos añadidos
+        const addedVehicles = newVehicleIds.filter(vehicleId => !oldVehicleIds.includes(vehicleId));
+
+        // Encontrar vehículos eliminados
+        const removedVehicles = oldVehicleIds.filter(vehicleId => !newVehicleIds.includes(vehicleId));
+
+        // Añadir vehículos nuevos
+        for (const vehicleId of addedVehicles) {
+            await putVehicleAddCompanyClientCtrl(vehicleId, _id);
+        }
+
+        // Eliminar vehículos que ya no están
+        for (const vehicleId of removedVehicles) {
+            await putVehicleRemoveCompanyClientCtrl(vehicleId);
+        }
 
         return updatedCompanyClient;
 

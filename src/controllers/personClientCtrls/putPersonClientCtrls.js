@@ -1,7 +1,12 @@
 require('../../db.js');
 const PersonClient = require('../../collections/PersonClient.js');
+const getPersonClientByIdCtrl = require('./getPersonClientByIdCtrl.js');
+const putVehicleAddPersonClientCtrl = require('../../controllers/vehicleCtrls/putVehicleAddPersonClientCtrl.js');
+const putVehicleRemovePersonClientCtrl = require('../../controllers/vehicleCtrls/putVehicleRemovePersonClientCtrl.js');
 
 const putPersonClientCtrl = async (_id, dni, name, email, phoneWsp, phones, cuilCuit, vehicles ) => {
+
+    const oldPersonClient = await getPersonClientByIdCtrl(_id);
 
     const update = {};
 
@@ -40,6 +45,30 @@ const putPersonClientCtrl = async (_id, dni, name, email, phoneWsp, phones, cuil
         if (!updatedPersonClient) {
             throw new Error("Client not found");
         };
+
+        // Comparar los arrays de vehículos
+        const oldVehicles = oldPersonClient.vehicles || [];
+        const newVehicles = vehicles || [];
+
+        // Extraer los _id de los vehículos antiguos y nuevos
+        const oldVehicleIds = oldVehicles.map(vehicle => vehicle._id.toString());
+        const newVehicleIds = newVehicles.map(vehicle => vehicle._id.toString());
+
+        // Encontrar vehículos añadidos
+        const addedVehicles = newVehicleIds.filter(vehicleId => !oldVehicleIds.includes(vehicleId));
+
+        // Encontrar vehículos eliminados
+        const removedVehicles = oldVehicleIds.filter(vehicleId => !newVehicleIds.includes(vehicleId));
+
+        // Añadir vehículos nuevos
+        for (const vehicleId of addedVehicles) {
+            await putVehicleAddPersonClientCtrl(vehicleId, _id);
+        }
+
+        // Eliminar vehículos que ya no están
+        for (const vehicleId of removedVehicles) {
+            await putVehicleRemovePersonClientCtrl(vehicleId);
+        }
 
         return updatedPersonClient;
 
