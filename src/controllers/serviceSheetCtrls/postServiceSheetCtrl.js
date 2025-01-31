@@ -1,6 +1,6 @@
 const ServiceSheet = require('../../collections/ServiceSheet.js');
 const putPersonClientAddServiceSheetCtrl = require('../personClientCtrls/putPersonClientAddServiceSheetCtrl.js');
-const putCompanyClientAddServiceSheetCtrl = require('../personClientCtrls/putPersonClientAddServiceSheetCtrl.js');
+const putCompanyClientAddServiceSheetCtrl = require('../companyClientCtrls/putCompanyClientAddServiceSheetCtrl.js');
 const putVehicleAddServiceSheetCtrl = require('../vehicleCtrls/putVehicleAddServiceSheetCtrl.js');
 
 const postServiceSheetCtrl = async (date, personClient, companyClient, vehicle, kilometers, kmsToNextService, oil, filters, notes, amount) => {
