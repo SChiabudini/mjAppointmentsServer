@@ -3,9 +3,9 @@ const schedule = require('node-schedule');
 
 const startScheduledJobs = async (sgMail) => {
 
-    const anualServiceReminderEmailTime = '52 19 * * *';
+    const anualServiceReminderEmailTime = '13 20 * * *';
 
-    const appointmentReminderEmailTime = '52 19 * * *';
+    const appointmentReminderEmailTime = '13 20 * * *';
 
     console.log("Inicializando tareas programadas...");
 

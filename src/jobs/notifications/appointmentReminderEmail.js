@@ -17,12 +17,23 @@ const appointmentReminderEmail = async (sgMail) => {
 
         if(!client) return;
 
-        const appointmentDate = appointment.start;
-        const appointmentTime = appointment.start;
+        const appointmentDate = new Intl.DateTimeFormat('es-ES', {
+            weekday: 'long', 
+            day: '2-digit', 
+            month: 'long'
+        }).format(new Date(appointment.start));
+        
+        const formattedDate = appointmentDate.charAt(0).toUpperCase() + appointmentDate.slice(1);
+
+        const appointmentTime = new Intl.DateTimeFormat('es-ES', {
+            hour: '2-digit', // Hora con dos dígitos
+            minute: '2-digit', // Minutos con dos dígitos
+            hour12: false, // Formato 24 horas
+        }).format(new Date(appointment.start)).replace(':', '.') + ' hs';
 
         const appointmentDetails = `
-            <li>Fecha y hora: ${appointmentDate}</li>
-            <li>Vehículo: ${appointment.vehicle.licensePlate}</li>
+            <li>Fecha y hora: <b>${formattedDate} ${appointmentTime}</b></li>
+            <li>Vehículo: <b>${appointment.vehicle.licensePlate}</b></li>
             <li>Procedimiento: ${appointment.procedure.service ? "Service - " : ""} ${appointment.procedure.mechanical ? "Mecánica - " : ""} ${appointment.procedure.title}</li>
         `;
 
