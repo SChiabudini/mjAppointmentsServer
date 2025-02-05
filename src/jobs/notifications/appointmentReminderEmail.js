@@ -15,7 +15,7 @@ const appointmentReminderEmail = async (sgMail) => {
 
         const client = appointment.personClient ? appointment.personClient : appointment.companyClient ? appointment.companyClient : null;
 
-        if(!client) return;
+        if(!client || !client.email) return;
 
         const appointmentDate = new Intl.DateTimeFormat('es-ES', {
             weekday: 'long', 
@@ -56,7 +56,7 @@ const appointmentReminderEmail = async (sgMail) => {
             })
             .catch((error) => {
                 console.error(error)
-            })
+            });
     })
 
 
