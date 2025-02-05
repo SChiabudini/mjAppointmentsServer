@@ -32,7 +32,7 @@ const appointmentReminderEmail = async (sgMail) => {
         }).format(new Date(appointment.start)).replace(':', '.') + ' hs';
 
         const appointmentDetails = `
-            <li>Fecha y hora: <b>${formattedDate} ${appointmentTime}</b></li>
+            <li>Fecha y hora: <b>${formattedDate} a las ${appointmentTime}</b></li>
             <li>Vehículo: <b>${appointment.vehicle.licensePlate}</b></li>
             <li>Procedimiento: ${appointment.procedure.service ? "Service - " : ""} ${appointment.procedure.mechanical ? "Mecánica - " : ""} ${appointment.procedure.title}</li>
         `;
