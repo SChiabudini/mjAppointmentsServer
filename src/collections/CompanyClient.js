@@ -14,6 +14,10 @@ const companyClientSchema = new Schema ({
         message: 'Invalid Name'
     },
 
+    normalizedName: {
+        type: String
+    },
+
     email: {
         type: String,
         required: true,
@@ -61,6 +65,13 @@ const companyClientSchema = new Schema ({
         type: Boolean,
         default: true
     }
+});
+
+companyClientSchema.pre('save', function (next) {
+    if (this.name) {
+        this.normalizedName = this.name.normalize('NFD').replace(/[̀-ͯ]/g, '');
+    }
+    next();
 });
 
 module.exports = model('CompanyClient', companyClientSchema);
