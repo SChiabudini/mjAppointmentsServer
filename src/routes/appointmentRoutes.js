@@ -6,7 +6,7 @@ appointmentRouter.get('/', getActiveAppointmentsHandler);
 appointmentRouter.get('/:id', getAppointmentByIdHandler);
 appointmentRouter.post('/', postAppointmentHandler);
 appointmentRouter.put('/', putAppointmentHandler);
-appointmentRouter.delete('/', deleteExpiredAppointmentsHandler);
+//appointmentRouter.delete('/', deleteExpiredAppointmentsHandler);
 appointmentRouter.put('/status/:id', putAppointmentStatusHandler);
 
 

@@ -1,4 +1,5 @@
 const { serviceReminderEmail, appointmentReminderEmail } = require("./notifications/index.js");
+const { deleteExpiredAppointmentsHandler } = require("./dataPurge/index.js");
 const schedule = require('node-schedule');
 
 const startScheduledJobs = async (sgMail) => {
@@ -23,11 +24,15 @@ const startScheduledJobs = async (sgMail) => {
 
     const appointmentReminderEmailTime = '00 12 * * *';
 
+    const deleteExpiredAppointmentsTime = '45 20 * * *';
+
     console.log("Starting scheduled jobs...");
 
     schedule.scheduleJob(serviceReminderEmailTime, () => serviceReminderEmail(sgMail)); 
 
     schedule.scheduleJob(appointmentReminderEmailTime, () => appointmentReminderEmail(sgMail));
+
+    schedule.scheduleJob(deleteExpiredAppointmentsTime, deleteExpiredAppointmentsHandler);
 
     console.log("Scheduled jobs initialized.");
 }
