@@ -12,7 +12,7 @@ const getActiveMechanicalSheetsByKeyWordsCtrl = async (keyWord) => {
     const normalizedKeyWord = normalize(keyWord);
     const regex = new RegExp(`.*${normalizedKeyWord}.*`, 'i');
 
-    const activeMechanicalSheets = await MechanicalSheet.find({ keyWords: regex, active: true })
+    const activeMechanicalSheets = await MechanicalSheet.find({ $or: [{ normalizedKeyWords: regex }, { keyWords: regex }], active: true })
     .populate('personClient')
     .populate('companyClient')
     .populate('vehicle');

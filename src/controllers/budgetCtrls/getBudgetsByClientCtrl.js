@@ -8,14 +8,22 @@ const getBudgetsByClientCtrl = async (client) => {
   const regex = new RegExp(normalizeString(client), 'i');
 
   const budgets = await Budget.find()
-    .populate('personClient', 'name')
-    .populate('companyClient', 'name');
+    .populate('personClient', 'name normalizedName')
+    .populate('companyClient', 'name normalizedName');
 
-  return budgets.filter(
-    (budget) =>
-      (budget.personClient && regex.test(normalizeString(budget.personClient.name))) ||
-      (budget.companyClient && regex.test(normalizeString(budget.companyClient.name)))
-  );
+    return budgets.filter((budget) => {
+      const personClient = budget.personClient;
+      const companyClient = budget.companyClient;
+  
+      return (
+        (personClient &&
+          (regex.test(normalizeString(personClient.name)) ||
+            (personClient.normalizedName && regex.test(personClient.normalizedName)))) ||
+        (companyClient &&
+          (regex.test(normalizeString(companyClient.name)) ||
+            (companyClient.normalizedName && regex.test(companyClient.normalizedName))))
+      );
+    });
 };
 
 module.exports = getBudgetsByClientCtrl; 

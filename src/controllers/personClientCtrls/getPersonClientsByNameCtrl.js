@@ -12,7 +12,9 @@ const getPersonClientsByNameCtrl = async (name) => {
     const normalizedName = normalize(name);
     const regex = new RegExp(`.*${normalizedName}.*`, 'i');
 
-    const personClients = await PersonClient.find({ name: regex })
+    const personClients = await PersonClient.find({
+      $or: [{ normalizedName: regex }, { name: regex }]
+    })
     .populate('vehicles')
     .populate('serviceSheets')
     .populate('mechanicalSheets');

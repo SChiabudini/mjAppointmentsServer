@@ -8,15 +8,24 @@ const getActiveServiceSheetsByClientCtrl = async (client) => {
   const regex = new RegExp(normalizeString(client), 'i');
 
   const serviceSheets = await ServiceSheet.find({ active: true })
-    .populate('personClient', 'name')
-    .populate('companyClient', 'name')
+    .populate('personClient', 'name normalizedName')
+    .populate('companyClient', 'name normalizedName')
     .populate('vehicle');
 
-  return serviceSheets.filter(
-    (serviceSheet) =>
-      (serviceSheet.personClient && regex.test(normalizeString(serviceSheet.personClient.name))) ||
-      (serviceSheet.companyClient && regex.test(normalizeString(serviceSheet.companyClient.name)))
-  );
+
+  return serviceSheets.filter((serviceSheet) => {
+      const personClient = serviceSheet.personClient;
+      const companyClient = serviceSheet.companyClient;
+  
+      return (
+        (personClient &&
+          (regex.test(normalizeString(personClient.name)) ||
+            (personClient.normalizedName && regex.test(personClient.normalizedName)))) ||
+        (companyClient &&
+          (regex.test(normalizeString(companyClient.name)) ||
+            (companyClient.normalizedName && regex.test(companyClient.normalizedName))))
+      );
+    });
 };
 
 module.exports = getActiveServiceSheetsByClientCtrl; 
