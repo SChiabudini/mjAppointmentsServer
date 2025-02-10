@@ -52,7 +52,7 @@ const appointmentReminderEmail = async (sgMail) => {
         sgMail
             .send(msg)
             .then(() => {
-                console.log(`Email enviado a ${client.email}`)
+                console.log(`Recordatorio de turno enviado a ${client.email}`)
             })
             .catch((error) => {
                 console.error(error)

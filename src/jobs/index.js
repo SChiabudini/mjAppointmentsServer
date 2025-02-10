@@ -19,17 +19,17 @@ const startScheduledJobs = async (sgMail) => {
 
     // Hay otros formatos especiales como L para último día del mes o de la semana
 
-    const serviceReminderEmailTime = '59 21 * * *'; //Siempre setear 3 hs después de la hora deseada (ambos horarios)
+    const serviceReminderEmailTime = '56 15 * * *'; //Siempre setear 3 hs después de la hora deseada (ambos horarios)
 
     const appointmentReminderEmailTime = '00 12 * * *';
 
-    console.log("Inicializando tareas programadas...");
+    console.log("Starting scheduled jobs...");
 
     schedule.scheduleJob(serviceReminderEmailTime, () => serviceReminderEmail(sgMail)); 
 
     schedule.scheduleJob(appointmentReminderEmailTime, () => appointmentReminderEmail(sgMail));
 
-    console.log("Tareas programadas inicializadas.");
+    console.log("Scheduled jobs initialized.");
 }
 
 module.exports = startScheduledJobs;
