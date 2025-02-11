@@ -18,7 +18,7 @@ const putVehicleHandler = async (req, res) => {
             return res.status(400).send({ error: 'Incorrect DataType - model' });
         }
 
-        if(typeof year !== 'number' || isNaN(year)){
+        if(year && typeof year !== 'number' || isNaN(year)){
             return res.status(400).send({ error: 'Incorrect DataType - year' });
         }
 
