@@ -39,7 +39,7 @@ const serviceReminderEmail = async (sgMail) => {
 
         const msg = {
             to: client.email,
-            from: 'sofi.ch5@gmail.com',
+            from: 'mjprooil44@gmail.com',
             subject: 'Recordatorio de último service en MJ Pro Oil',
             text: `Estimado/a ${client.name}, este es un recordatorio de su último service en MJ Pro Oil con fecha de ${sheetDate}. Le recomendamos comunicarse con nosotros para la realización de su próximo service. Lo esperamos en Av. 44 n° 1877 e/ 132 y 133. Saludos cordiales, el equipo de MJ Pro Oil`,
             html: emailBody,

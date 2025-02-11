@@ -43,7 +43,7 @@ const appointmentReminderEmail = async (sgMail) => {
 
         const msg = {
             to: client.email,
-            from: 'sofiachiabudini@gmail.com',
+            from: 'mjprooil44@gmail.com',
             subject: 'Recordatorio de su turno en MJ Pro Oil',
             text: `Estimado/a ${client.name}, este es un recordatorio de su turno en MJ Pro Oil para mañana a las ${appointmentTime}. Si tiene alguna consulta o necesita reprogramar su turno, no dude en comunicarse con nosotros. Lo esperamos en Av. 44 n° 1877 e/ 132 y 133. Saludos cordiales, el equipo de MJ Pro Oil`,
             html: emailBody,

@@ -4,7 +4,7 @@ const server = require('./src/app.js');
 const startScheduledJobs = require('./src/jobs/index.js');
 const sgMail = require('@sendgrid/mail')
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+sgMail.setApiKey(process.env.SENDGRID_API_KEY || '')
 const port = process.env.PORT || 8000;
 
 server.listen(port, () => {

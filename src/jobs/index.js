@@ -30,9 +30,9 @@ const startScheduledJobs = async (sgMail) => {
 
     console.log("Starting scheduled jobs...");
 
-    //schedule.scheduleJob(serviceReminderEmailTime, () => serviceReminderEmail(sgMail)); 
+    schedule.scheduleJob(serviceReminderEmailTime, () => serviceReminderEmail(sgMail)); 
 
-    //schedule.scheduleJob(appointmentReminderEmailTime, () => appointmentReminderEmail(sgMail));
+    schedule.scheduleJob(appointmentReminderEmailTime, () => appointmentReminderEmail(sgMail));
 
     schedule.scheduleJob(deleteExpiredAppointmentsTime, deleteExpiredAppointmentsHandler);
 
