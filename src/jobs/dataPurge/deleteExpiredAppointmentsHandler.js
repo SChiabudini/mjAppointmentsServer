@@ -1,16 +1,17 @@
 const deleteExpiredAppointmentsCtrl = require('../../controllers/appointmentCtrls/deleteExpiredAppointmentsCtrl.js');
 
-const deleteExpiredAppointmentsHandler = async (req, res) => {
+const deleteExpiredAppointmentsHandler = async () => {
 
     try {
 
         const today = new Date().toISOString();
 
-        const expiredAppointment = await deleteExpiredAppointmentsCtrl(today);
+        const expiredAppointments = await deleteExpiredAppointmentsCtrl(today);
 
-        console.log(`${expiredAppointment} appointments has been deleted.`);
+        console.log(`${expiredAppointments} appointments have been deleted.`);
     } catch (error) {
-        throw new Error(error);
+        console.error('Error deleting expired budgets:', error);
+        throw error;
     }
 };
 
