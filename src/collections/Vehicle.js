@@ -22,7 +22,6 @@ const vehicleSchema = new Schema ({
 
     year: {
         type: Number,
-        required: true,
         message: 'Invalid Year'
     },
 

@@ -7,7 +7,7 @@ const postVehicleHandler = async (req, res) => {
 
     try {
         
-        if(!licensePlate || !brand || !model || !year || !engine) {
+        if(!licensePlate || !brand || !model || !engine) {
             return res.status(400).send({ error: 'Missing data' });
         }
 
@@ -28,7 +28,7 @@ const postVehicleHandler = async (req, res) => {
             return res.status(400).send({ error: 'Incorrect DataType - model' });
         }
 
-        if(typeof year !== 'number' || isNaN(year)){
+        if(year && typeof year !== 'number' || isNaN(year)){
             return res.status(400).send({ error: 'Incorrect DataType - year' });
         }
 
