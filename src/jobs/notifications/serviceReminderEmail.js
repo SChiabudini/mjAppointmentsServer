@@ -31,7 +31,7 @@ const serviceReminderEmail = async (sgMail) => {
             <li>Vehículo: <b>${sheet.vehicle.licensePlate}</b></li>
             <li>Aceite: ${sheet.oil}</li>
             <li>Filtros: ${sheet.filters.length > 0 ? sheet.filters.join(', ') : "Ninguno"}</li>
-            <li>Kilómetraje: ${sheet.kilometers}</li>
+            <li>Kilometraje: ${sheet.kilometers}</li>
             <li>Kilómetros para el próximo service: ${sheet.kmsToNextService}</li>
         `;
 
