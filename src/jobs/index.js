@@ -1,5 +1,5 @@
 const { serviceReminderEmail, appointmentReminderEmail } = require("./notifications/index.js");
-const { deleteExpiredAppointmentsHandler, deleteExpiredBudgetsHandler } = require("./dataPurge/index.js");
+const { deleteExpiredAppointmentsHandler, deleteExpiredBudgetsHandler } = require("./dataManagement/index.js");
 const schedule = require('node-schedule');
 
 const startScheduledJobs = async (sgMail) => {
@@ -20,7 +20,7 @@ const startScheduledJobs = async (sgMail) => {
 
     // Hay otros formatos especiales como L para último día del mes o de la semana
 
-    const serviceReminderEmailTime = '35 08 * * *'; //Siempre setear 3 hs después de la hora deseada (válido para todas las constantes de tiempo)
+    const serviceReminderEmailTime = '00 11 * * *'; //Siempre setear 3 hs después de la hora deseada (válido para todas las constantes de tiempo)
 
     const appointmentReminderEmailTime = '00 11 * * *';
 
