@@ -1,7 +1,7 @@
-const anualServiceReminderEmail = require("./anualServiceReminderEmail.js");
+const serviceReminderEmail = require("./serviceReminderEmail.js");
 const appointmentReminderEmail = require("./appointmentReminderEmail.js");
 
 module.exports = {
-    anualServiceReminderEmail,
+    serviceReminderEmail,
     appointmentReminderEmail
 };

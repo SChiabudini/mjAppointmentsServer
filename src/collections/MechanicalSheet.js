@@ -42,6 +42,10 @@ const mechanicalSheetSchema = new Schema ({
         message: 'Invalid Kewords'
     },
 
+    normalizedKeyWords: {
+        type: String
+    },
+
     description: {
         type: String,
         required: true,
@@ -72,6 +76,13 @@ mechanicalSheetSchema.pre('save', async function(next) {
         } catch (error) {
             return next(error);
         }
+    }
+    next();
+});
+
+mechanicalSheetSchema.pre('save', function (next) {
+    if (this.keyWords) {
+        this.normalizedKeyWords = this.keyWords.normalize('NFD').replace(/[̀-ͯ]/g, '');
     }
     next();
 });

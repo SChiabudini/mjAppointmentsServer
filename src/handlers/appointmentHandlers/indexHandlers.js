@@ -4,7 +4,7 @@ const getAppointmentByIdHandler = require('./getAppointmentsByIdHandler.js');
 const postAppointmentHandler = require('./postAppointmentHandler.js');
 const putAppointmentHandler = require('./putAppointmentHandler.js');
 const putAppointmentStatusHandler = require('./putAppointmentStatusHandler.js');
-const deleteExpiredAppointmentsHandler = require('./deleteExpiredAppointmentsHandler.js');
+//const deleteExpiredAppointmentsHandler = require('./deleteExpiredAppointmentsHandler.js');
 
 module.exports = {
     getAppointmentsHandler,
@@ -13,5 +13,5 @@ module.exports = {
     postAppointmentHandler,
     putAppointmentHandler,
     putAppointmentStatusHandler,
-    deleteExpiredAppointmentsHandler
+    //deleteExpiredAppointmentsHandler
 }

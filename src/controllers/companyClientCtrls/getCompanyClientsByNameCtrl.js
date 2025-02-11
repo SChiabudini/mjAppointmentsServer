@@ -12,7 +12,7 @@ const getCompanyClientsByNameCtrl = async (name) => {
     const normalizedName = normalize(name);
     const regex = new RegExp(`.*${normalizedName}.*`, 'i');
 
-    const companyClients = await CompanyClient.find({ name: regex })
+    const companyClients = await CompanyClient.find({ $or: [{ normalizedName: regex }, { name: regex }] })
     .populate('vehicles')
     .populate('serviceSheets')
     .populate('mechanicalSheets');

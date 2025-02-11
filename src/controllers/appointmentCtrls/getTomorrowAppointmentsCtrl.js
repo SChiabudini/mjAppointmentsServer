@@ -4,7 +4,7 @@ const Appointment = require('../../collections/Appointment.js');
 const getTomorrowAppointmentsCtrl = async (date) => {
     try {
         if (!date) {
-            throw new Error('Se debe proporcionar una fecha válida.');
+            throw new Error('A valid date must be provided');
         }
 
         // Convertir la fecha de entrada a un objeto Date
@@ -35,7 +35,7 @@ const getTomorrowAppointmentsCtrl = async (date) => {
 
         return appointments;
     } catch (error) {
-        console.error('Error obteniendo las citas del día de mañana:', error.message);
+        console.error('Error getting tomorrow appointments:', error.message);
         throw error;
     }
 };

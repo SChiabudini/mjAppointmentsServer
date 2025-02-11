@@ -8,14 +8,22 @@ const getVehiclesByClientCtrl = async (client) => {
   const regex = new RegExp(normalizeString(client), 'i');
 
   const vehicles = await Vehicle.find()
-    .populate('personClient', 'name')
-    .populate('companyClient', 'name');
+    .populate('personClient', 'name normalizedName')
+    .populate('companyClient', 'name normalizedName');
 
-  return vehicles.filter(
-    (vehicle) =>
-      (vehicle.personClient && regex.test(normalizeString(vehicle.personClient.name))) ||
-      (vehicle.companyClient && regex.test(normalizeString(vehicle.companyClient.name)))
-  );
+  return vehicles.filter((vehicle) => {
+    const personClient = vehicle.personClient;
+    const companyClient = vehicle.companyClient;
+
+    return (
+      (personClient &&
+        (regex.test(normalizeString(personClient.name)) ||
+          (personClient.normalizedName && regex.test(personClient.normalizedName)))) ||
+      (companyClient &&
+        (regex.test(normalizeString(companyClient.name)) ||
+          (companyClient.normalizedName && regex.test(companyClient.normalizedName))))
+    );
+  });
 };
 
 module.exports = getVehiclesByClientCtrl; 
