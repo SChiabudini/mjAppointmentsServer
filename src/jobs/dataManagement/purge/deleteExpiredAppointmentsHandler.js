@@ -1,4 +1,4 @@
-const deleteExpiredAppointmentsCtrl = require('../../controllers/appointmentCtrls/deleteExpiredAppointmentsCtrl.js');
+const deleteExpiredAppointmentsCtrl = require('../../../controllers/appointmentCtrls/deleteExpiredAppointmentsCtrl.js');
 
 const deleteExpiredAppointmentsHandler = async () => {
 

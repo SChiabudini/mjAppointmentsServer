@@ -1,4 +1,4 @@
-const deleteExpiredBudgetsCtrl = require('../../controllers/budgetCtrls/deleteExpiredBudgetsCtrl.js');
+const deleteExpiredBudgetsCtrl = require('../../../controllers/budgetCtrls/deleteExpiredBudgetsCtrl.js');
 
 const deleteExpiredBudgetsHandler = async () => {
 
